@@ -7,7 +7,6 @@ COPY application application
 COPY DAO DAO
 COPY services services
 COPY views views
-COPY config.py .
 COPY db_config.py .
 COPY implemented.py .
 COPY app.py .
