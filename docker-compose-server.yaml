@@ -9,6 +9,8 @@ services:
     depends_on:
       postgres_db:
         condition: service_healthy
+    volumes:
+      - ./config.py:/code/config.py
 
         
 
