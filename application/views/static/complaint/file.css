@@ -1,0 +1,77 @@
+@charset "windows-1251";
+/* CSS Document */
+
+body {
+font-family: Geneva, Arial, Helvetica, sans-serif;
+font-size: 14px;
+color:grey;
+}
+
+.small_text {
+font-family: Geneva, Arial, Helvetica, sans-serif;
+font-size: 8px;
+}
+
+
+TABLE.class-1 {
+    border: 1px solid black; /* Рамка вокруг таблицы */
+    border-spacing: 0px;
+	border-collapse: collapse;
+}
+TH.class-4 {
+ 
+    padding: 0px; 
+    border: 1px solid black;/* Рамка вокруг таблицы */
+}    
+TD.class-3{
+ 
+    padding: 0px; 
+    border: 0px solid black; /* Рамка вокруг таблицы */
+}
+TD.class-5{
+ 
+    padding: 1px; 
+    border: 1px solid black; /* Рамка вокруг таблицы */
+    text-align: center;
+    height: 15pt;
+}
+TD.class-6{
+ 
+    padding: 1px; 
+    border: 1px solid black; /* Рамка вокруг таблицы */
+    text-align: center;
+    height: 120pt;
+}
+TABLE.class-2 {
+    border: 1px solid black; /* Рамка вокруг таблицы */
+    border-spacing: 0px;
+	border-collapse: collapse;
+   }
+TD.left_a{
+	text-align: left;
+	padding: 1px; 
+    border: 1px solid black; /* Рамка вокруг таблицы */
+    
+}
+
+
+
+.d_view {
+color:black;
+font-family: Courier;
+font-weight: bold;
+font-size: 24px;
+white-space: nowrap;
+}
+.forexample {
+color:Orange;
+}
+.boldtext{
+	font-weight: bold;
+}
+
+
+.more {
+     page-break-after: always;
+    } 
+    

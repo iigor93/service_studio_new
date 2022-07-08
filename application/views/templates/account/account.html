@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+
+<br>
+
+ <form method="POST" >
+        <p>
+            <label>Номер счета</label><br>
+            <input type="text" name="account_number" style="width:5em">
+        </p>
+        <p>
+            <label>Текущая дата/время</label><br>
+            {{ date_time }}
+        </p>
+        <input type="submit" value="Создать счет" >
+    </form>
+
+
+
+{% if account_list %}
+    <table border = "1">
+		<th>Номер счета, дата счета</th>
+		<th>Количество рекламаций в счете</th>
+		<th>Оплата счета</th>
+    {% for account_t in account_list %}
+        <tr>
+			<td align="center" ><br><a href="{{ url_for('account.account_details', aid=account_t.id) }}"># {{ account_t.account_number }} от  {{ account_t.account_date | string | truncate(10, True, '') }}</a> <br> </td>
+			<td align = "center">{{ account_t.complaint | length }}</td>
+			<td align = "center">{% if account_t.account_paid %} Счет оплачен {% endif %}</td>
+			
+        </tr>
+    {% endfor %}
+    </table>
+    
+    
+{% else %}
+    <p>No accounts are available.</p>
+{% endif %}
+
+{% endblock %}

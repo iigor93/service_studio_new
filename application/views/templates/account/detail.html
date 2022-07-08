@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content %}
+
+<br><br>
+
+<form action="{{ url_for('prints.account_print') }}" method="post" target="_blank">
+	<input type="hidden" name = "id" value = {{account.id}}>
+	<input type="submit" value="Печать счета">
+</form>
+
+<br>
+<table border="1">
+ <tr>
+	 <td>Счет # </td>
+     <td class="d_view" align = "center">{{ account.account_number }}</td>
+     <td>от {{account.account_date | string | truncate(10, True, '')}}</td>
+ </tr>
+  <tr>
+	  <td></td>
+	  <td align = "center">
+		  <form method="post">
+				<div>Счет оплачен:
+					<input type="checkbox" name = "account_paid" {% if account.account_paid == True %} checked {% endif%}>
+					<input type="hidden" name="id" value="{{account.id}}">
+				</div>
+			    <input type="submit" value="ОК">
+		  </form>
+	  </td>
+	  <td align = "center">
+		  <form method="post">
+				<div>
+					<input name = "account_date" type="date" value={{date_time}}>
+					<input type="hidden" name="id" value="{{account.id}}">
+				</div>
+			    <input type="submit" value="Изменить дату счета">
+		</form>
+	  </td>
+  </tr>
+</table><br><br>
+{% if account.account_number != "1" %}
+<div>Загрузка списка рекламаций:<br>
+<form method="post">
+	<div><textarea name = "compl_list"></textarea></div>
+	<input type="hidden" name="id" value="{{account.id}}">
+	<input type="submit" value="Загрузить">
+</form></div>
+
+<div>
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for message in messages %}
+				<p>{{ message }}</p>
+    		{% endfor %}
+		{% endif %}
+	{% endwith %}
+</div>
+
+<div>Список рекламаций в счете (шт.): {{ account.complaint | length}}</div>
+
+<table border="1">
+	<th>Номер</th>
+	<th>Стоимость</th>
+	<th>Выезд, ч</th>
+	<th>Наличие<br>файлов<br>пользователя</th>
+	{% for item in account.complaint %}
+	<tr>
+		<td><a href="{{ url_for( 'detail_compl.detail_compl', c_id=item.id ) }}" >{{ item.numer_complane }} </a></td>
+		<td align = "center">{{ item.price_status }}</td>
+		<td align = "center">{{ item.transport_hours }}</td>
+		<td align = "center">{% if  item.date_complited_fake != '0' %} ДА {% endif %}</td>
+	</tr>
+	{% endfor %}
+
+ </table>
+{% endif %}
+{% endblock %}

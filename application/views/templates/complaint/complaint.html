@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3>{{descr}} ({{complane_list|length}}шт)</h3>
+
+{% if print_view %}
+
+	{% if all_dates_at_work %}
+	Доступные даты на выезд:<br>
+		{% for item in all_dates_at_work %}
+			<a href="{{ url_for( 'complaint.at_work', dt=item ) }}">{{item | string | truncate(10, True, '')}}</a><br>
+		{% endfor %}
+	{% endif %}
+	<br><br>
+	
+	Дата в актах
+	<form action="{{ url_for('prints.print_all') }}" method="post" target="_blank">
+		<input name = "date_print" type="date" value={{req}}>
+		<input type="hidden" name = "dt" value = {{req}}>
+		<input type="submit" value="Печать">
+	</form>
+	
+	
+	<form action="{{ url_for('prints.print_empty') }}" method="post" target="_blank">
+		<input type="submit" value="Печать пустого акта">
+	</form>
+{% endif %}
+
+{% if print_view == 0 and  complane_view_all == 0 %}
+
+<table width = 100%>
+<tr>
+<td>
+{% if find_view != 1 %}
+<form method="post">
+	<textarea name = "complaint" style = "width:199px; height :50px;"></textarea>
+	<br>
+	<input type="submit" value="Добавить новую рекламацию">
+</form>
+{% endif %}
+</td>
+
+<td align = "right">
+<form method="post">
+
+	<input type = "text" name = "find_smth"> <br>
+	<input type="submit" value="Поиск">
+</form>
+</td>
+</tr>
+</table>
+{% endif %}
+
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+
+    {% for message in messages %}
+		<p>{{ message }}</p>
+    {% endfor %}
+
+  {% endif %}
+{% endwith %}
+
+
+{% if complane_list %}
+
+    <table border="1" width = 100% style="font-size:10pt;">
+	<tr>
+		<th>№</th>
+		{% if print_view %}
+			<th>Порядок</th>
+		{% endif %}
+		
+		<th>Номер</br> заявки</th>
+		
+		<th width = 25%>Описание проблемы</th>
+		<th width = 25%>Адрес</th>
+		<th>Имя</th>
+		<th>Телефон</th>
+		<th>Тип</th>
+		<th>Статус</th>
+		<th width = 15%>Комментарий</th>
+   </tr> 
+   
+   
+    {% for list in complane_list %}
+    
+        <tr
+				{% if list.device_type == '187F0002' %}
+					bgcolor="#98FB98" style="color:black; "
+				{% elif list.device_type == '187F000100' %}
+					bgcolor="#EEE8AA" style="color:black;"
+
+				{% elif list.device_type == '187F0001' %}
+					bgcolor="#ADD8E6" style="color:black;"
+
+				{% elif list.device_type == 'NoAddres' %}
+					bgcolor="red" style="color:black;"
+				{% elif list.device_type == 'Error' %}
+					bgcolor="red" style="color:black;"
+				{% endif %}
+		>
+
+			<td>{{loop.index}}</td>
+
+			{% if print_view %}
+			<td align="center">
+			<form method="post" name="change_order" >
+
+					 <input type="number" name = "print_order" value={{list.print_order}} style="width: 3em;">
+					 <input type="hidden" name = "id" value = {{list.id}}>
+					 <input type="submit" value="OK">
+			</form>
+			</td>
+			{% endif %}
+			
+			<td align="center"><a href="{{ url_for( 'detail_compl.detail_compl', c_id=list.id ) }}" class="d_view" style="font-size:14pt;">{{ list.numer_complane }}{% if list.date_complited_fake == "1"  %}*{% endif %}
+				</a>
+				<br>{{list.date_creation}}</td>
+			<td width = "200">{{list.description_complane}}</td>
+			<td width = "250">{{list.address_complane}}</td>
+			<td>{{list.client_name}}</td>
+			<td align="center"> <a href="{{ url_for( 'detail_compl.detail_compl', c_id=list.id ) }}"> {{list.client_phone_num}}</a></td>
+			<td>{{list.device_type}}</td>
+
+		<td align="center"> {{list.status_complane}} {% if print_view %} <br>{{list.date_at_work | string | truncate(10, True, '')}} {% endif %}</td>
+<td>{{list.additional_comment}}<br></td>
+</tr>
+{% endfor %} 
+</table><br>
+
+<br>
+
+{% if print_view %}
+   	{% for list in complane_list %}
+   		{{list.client_phone_num}} <br>
+	{% endfor %}
+{% endif %}
+
+
+
+{% else %}
+    <p>No complanes are available.</p>
+{% endif %}
+
+{% endblock %}

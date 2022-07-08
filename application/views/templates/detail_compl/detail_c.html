@@ -1,0 +1,197 @@
+﻿{% extends "base.html" %} {% block content %}<br>
+<table border="0">
+  <tr>
+    <td>Рекламация</td>
+    <td class="d_view">{{ complain.numer_complane }}</td>
+    <td>от {{complain.date_creation}}</td>
+  </tr>
+</table><br>
+{% if complain %}
+<table border="1">
+  <tr>
+    <th>Описание проблемы</th>
+    <th>Имя, Телефон</th>
+    <th>Адрес</th>
+    <th>Комментарий</th>
+    <th>Тип</th>
+  </tr>
+  <tr>
+    <td rowspan="2">{{complain.description_complane}}</td>
+    <td rowspan="2" align="center">{{complain.client_name}}<br>
+    <br>
+    {{complain.client_phone_num}}</td>
+    <td>{{complain.address_complane}}</td>
+    <td width="300">{{complain.additional_comment}}<br>
+    <br></td>
+    <td align="center">{{complain.device_type}}</td>
+  </tr>
+  <tr>
+    <td align="center">
+      <form method="post">
+        <div>
+          <textarea name="address" cols="40" rows="4">{{complain.address_complane}}</textarea>
+        </div>
+        <div>
+          <textarea name="add_address" placeholder="добавить подъезд и этаж" cols="30" rows="4"></textarea>
+		  <input type="hidden" value="{{complain.id}}" name="id">
+        </div><input type="submit" value="Добавить">
+      </form>
+    </td>
+    <td align="center">
+      <form method="post">
+        <div>
+          	<textarea name="additional_comment" cols="40" rows="4">{{complain.additional_comment}}</textarea>
+			<input type="hidden" value="{{complain.id}}" name="id">
+        </div><input type="submit" value="Добавить">
+      </form>
+    </td>
+
+    <td align="center">
+      <form method="post">
+        <div>
+          <select size="5" multiple name="device_type">
+            <option value="187F0001">
+              187F0001
+            </option>
+            <option value="187F000100">
+              187F000100
+            </option>
+            <option value="187F0002">
+              187F0002
+            </option>
+            <option value="187F001400">
+              187F001400
+            </option>
+            <option value="diagnost">
+              diagnost
+            </option>
+            <option value="INDIV-5">
+              INDIV-5
+            </option>
+          </select>
+        </div>
+        <input type="hidden" value="{{complain.id}}" name="id">
+        <input type="submit" value="Изменить">
+      </form>
+    </td>
+  </tr>
+</table><br>
+<br>
+
+
+<table border="0" width="80%">
+  <tr>
+    <td width="20%">
+      Текущий статус:
+      <div class="d_view">
+        {{complain.status_complane}}
+      </div>
+
+
+      <form method="post" >
+
+        {% if complain.status_complane == 'NEW' %}
+          <input type="submit" value="at_work" name="status_complane">
+        {% else %}
+          <input type="submit" value="NEW" name="status_complane">
+        {% endif %}
+
+        <input type="hidden" value="{{complain.id}}" name="id">
+
+      </form>
+
+
+    </td>
+
+    {% if complain.status_complane == 'done' %}
+
+    <td align="left">Дата закрытия заявки:<br>
+    {{complain.date_complited_real | string | truncate(10, True, '')}}</td>
+
+    {% elif complain.status_complane == 'at_work' %}
+
+    <td align="left">
+      Дата выезда (at_work):<br>
+      {{complain.date_at_work | string | truncate(10, True, '')}}<br>
+      <form method="post">
+        <input type="date" name="date_at_work" value={{date_time}}><br>
+        <input type="hidden" value="{{complain.id}}" name="id">
+        <input type="submit" value="Изменить дату выезда">
+      </form><br>
+      <br>
+      Укажите дату закрытия заявки:
+      <form method="post">
+        <input type="date" name="date_complited_real" value={{date_time}}><br>
+        <input type="hidden" value="{{complain.id}}" name="id">
+        <input type="submit" value="Закрыть заявку">
+      </form>
+    </td>
+
+    {% endif %}
+
+    {% if complain.status_complane == 'done' %}
+
+    <td align="center">
+      <p>Текущий счет: <a href="{{ url_for('account.account_details', aid=complain.accounts.id ) }}">{{complain.accounts.account_number }}</a></p>
+      <div>
+        <div>
+          Доступные счета:
+        </div>
+
+        <form method="post" >
+          <select name="change_acc_for_complain">
+            {% for account in available_accounts %}
+            <option value="{{ account.id }}">
+              {{ account.account_number }}
+            </option>
+            {% endfor %}
+          </select><br>
+          <br>
+          <input type="hidden" value="{{complain.id}}" name="id">
+          <input type="submit" value="Привязать к счету">
+        </form>
+
+      </div>
+    </td>
+    <td align="center">
+      <div>
+        <form method="post">
+          Стоимость рекламации, РУБ без НДС:<br>
+          Если диагностический выезд - кол-во часов:
+          <div>
+            <input type="number" name="price_status" style="width:5em" value="{{complain.price_status}}">
+          </div><br>
+          <div>
+            Транспортные расходы, ч
+          </div>
+          <div>
+            <input type="number" name="transport_hours" style="width:5em" value="{{complain.transport_hours}}">
+          </div><br>
+          <input type="hidden" value="{{complain.id}}" name="id">
+          <input type="submit" value="Изменить">
+        </form>
+      </div>
+    </td>
+    {% endif %}
+  </tr>
+</table><br>
+<br>
+<form method="post">
+  <select name="delete_complane">
+    <option>
+      - - -
+    </option>
+    <option value="delete">
+      Удалить
+    </option>
+  </select><br>
+  <input type="hidden" value="{{complain.id}}" name="id">
+  <input type="submit" value="Удалить">
+</form>
+
+{% else %}
+<p>No complanes are available.</p>
+
+{% endif %}
+
+{% endblock %}

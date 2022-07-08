@@ -1,0 +1,1032 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:x="urn:schemas-microsoft-com:office:excel"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=Excel.Sheet>
+<meta name=Generator content="Microsoft Excel 12">
+
+
+<link rel=File-List href=filelist.xml>
+
+<link rel=Stylesheet href="{{ url_for('prints.static', filename='complaint/stylesheet.css/') }}">
+<style>
+
+</style>
+<![if !supportTabStrip]><script language="JavaScript">
+
+</script>
+<![endif]>
+</head>
+
+
+
+
+<body link=blue vlink=purple>
+{% if printEmpty != 1 %}
+<table border = 0 class="tbfirst">
+	<th width="30" class="tbfirst">№ п/п</th>
+	<th width="30" class="tbfirst">Номер заявки</th>
+	<th width="200" class="tbfirst">Описание</th>
+	<th width="240" class="tbfirst">Адрес</th>
+	<th width="100" class="tbfirst">Имя, телефон</th>
+	<th width="100" class="tbfirst">Комментарий</th>
+	{% for list in complane_list %}
+	
+	<tr >
+		<td class="tbfirst" style="text-align:center;">
+			{{loop.index}}
+		</td>
+		
+		<td width="50" class="tbfirst" style="text-align:center;">
+			{{list.numer_complane}}
+		</td>
+		<td width="200" class="tbfirst">
+			{{list.description_complane}}
+		</td>
+		<td width="240" class="tbfirst">
+			{{list.address_complane}}
+		</td>
+		<td width="100" class="tbfirst" style="text-align:center;">
+			{{list.client_name}},<br>{{list.client_phone_num}}
+		</td>
+		<td width="100" class="tbfirst">
+			{{list.additional_comment}}
+			<br><br>
+			{{list.device_type}}
+		</td>
+	</tr>
+	{% endfor %}
+
+</table>
+	
+
+
+	
+<div class="more"></div>  <!-- Перенос на след страницу при печати --> 
+{% endif %}
+
+{% if complane_list %}
+    {% for list in complane_list %}
+
+
+<table border=0 width=791 style='border-collapse:
+ collapse;table-layout:fixed;width:605pt; padding:2px'>
+ <col width=30 span=23 style='mso-width-source:userset;mso-width-alt:1097;
+ width:23pt'>
+ <col width=101 style='width:76pt'>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=11 height=17 width=330 style='height:12.75pt;width:253pt'></td>
+  <td colspan=10 class=xl65 width=300 style='width:230pt'>АКТ</td>
+  <td class=xl65 colspan=2 width=60 style='mso-ignore:colspan;width:46pt'>г.Москва</td>
+  <td width=101 style='width:76pt'></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=6 height=17 style='height:12.75pt'></td>
+  <td colspan=14 class=xl65>Замены / программирования распределителей INDIV</td>
+  <td colspan=3 class=xl123 align=center>{{date_time}}</td>
+  <td></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl66 colspan=3 style='height:15.0pt;mso-ignore:colspan'>по адресу:</td>
+  <td colspan=20 class=xl124 align=left>{{list.address_complane}}</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=23 height=17 class=xl125 style='height:12.75pt'>Сведения об
+  установленных квартирных приборах учета:<br></td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=6 height=17 class=xl118 style='border-right:.5pt solid black;
+  height:12.75pt'><span style='mso-spacerun:yes'>   </span></td>
+  <td colspan=6 class=xl118 style='border-right:.5pt solid black;border-left:
+  none'>Замененный прибор</td>
+  <td colspan=6 class=xl118 style='border-right:.5pt solid black;border-left:
+  none'>Установленный прибор (**)</td>
+  <td colspan=5 class=xl118 style='border-right:.5pt solid black;border-left:
+  none'>Примечание</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=6 height=17 class=xl118 style='border-right:.5pt solid black;
+  height:12.75pt'>Наименование ПУ</td>
+  <td colspan=6 class=xl118 style='border-right:.5pt solid black;border-left:
+  none'>INDIV-X-10<span style='mso-spacerun:yes'>  </span>R<span
+  style='mso-spacerun:yes'>  </span>RT</td>
+  <td colspan=6 class=xl118 style='border-right:.5pt solid black;border-left:
+  none'>INDIV-X-10<span style='mso-spacerun:yes'>  </span>R<span
+  style='mso-spacerun:yes'>  </span>RT</td>
+  <td colspan=5 class=xl118 style='border-right:.5pt solid black;border-left:
+  none'>&nbsp;</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=6 rowspan=4 height=68 class=xl120 style='border-right:.5pt solid black;
+  border-bottom:.5pt solid black;height:51.0pt'>Заводской номер</td>
+  <td class=xl73 style='border-top:none;border-left:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl93 style='border-top:none'>&nbsp;</td>
+  <td class=xl73 style='border-top:none;border-left:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl93 style='border-top:none'>&nbsp;</td>
+  <td colspan=5 rowspan=4 class=xl101 style='border-right:.5pt solid black;
+  border-bottom:.5pt solid black'>&nbsp;</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl73 style='height:12.75pt;border-top:none;border-left:
+  none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl93 style='border-top:none'>&nbsp;</td>
+  <td class=xl73 style='border-top:none;border-left:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl93 style='border-top:none'>&nbsp;</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl73 style='height:12.75pt;border-top:none;border-left:
+  none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl93 style='border-top:none'>&nbsp;</td>
+  <td class=xl73 style='border-top:none;border-left:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl93 style='border-top:none'>&nbsp;</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl73 style='height:12.75pt;border-top:none;border-left:
+  none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl93 style='border-top:none'>&nbsp;</td>
+  <td class=xl73 style='border-top:none;border-left:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl93 style='border-top:none'>&nbsp;</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=6 rowspan=9 height=153 class=xl121 width=180 style='border-right:
+  .5pt solid black;border-bottom:.5pt solid black;height:114.75pt;width:138pt'><font
+  class="font9">Текущие показания на момент установки /замены (*)<br>
+    <br>
+    <br>
+    <br>
+    <br>
+    </font><font class="font12"><br>
+    *вносятся все показания, видимые на дисплее прибора</font></td>
+  <td colspan=5 rowspan=2 class=xl127 style='border-bottom:.5pt solid black'>Дисплей
+  не работает</td>
+  <td rowspan=2 class=xl72 align=center style='border-bottom:.5pt solid black;
+  border-top:none'><input type="checkbox"></td>
+  <td colspan=6 rowspan=9 class=xl128 style='border-right:.5pt solid black;
+  border-bottom:.5pt solid black'><br>
+    Текущие показания:<br>
+    <br>
+    <span style='mso-spacerun:yes'>     </span>__0_______________<br>
+    <br>
+    <br>
+    <br>
+    Показания на расчетную дату<br>
+    <span style='mso-spacerun:yes'>    </span><br>
+    <span style='mso-spacerun:yes'>    </span>___0_______________</td>
+  <td colspan=4 rowspan=4 class=xl126 width=120 style='border-bottom:.5pt solid black;
+  width:92pt'>Установка нового счетчика</td>
+  <td rowspan=4 class=xl72 align=center style='border-bottom:.5pt solid black;
+  border-top:none'><input type="checkbox"></td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 style='height:12.75pt'></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=5 rowspan=2 height=34 class=xl126 width=150 style='border-bottom:
+  .5pt solid black;height:25.5pt;width:115pt'>Err без видимых <br>
+    повреждений пломбы</td>
+  <td rowspan=2 class=xl129 align=center width=30 style='border-bottom:.5pt solid black;
+  border-top:none;width:23pt'><input type="checkbox"></td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 style='height:12.75pt'></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=5 height=17 class=xl101 style='height:12.75pt;border-left:none'>По
+  месту работает</td>
+  <td class=xl72 align=center style='border-top:none'><input type="checkbox"></td>
+  <td colspan=4 rowspan=5 class=xl126 width=120 style='border-bottom:.5pt solid black;
+  width:92pt'>Сброс ошибки, установка на радиатор</td>
+  <td rowspan=5 class=xl72 align=center style='border-bottom:.5pt solid black;
+  border-top:none'><input type="checkbox"></td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=6 rowspan=2 height=34 class=xl119 style='border-right:.5pt solid black;
+  height:25.5pt'>Текущие показания</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 style='height:12.75pt'></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=6 rowspan=2 height=34 class=xl119 style='border-right:.5pt solid black;
+  border-bottom:.5pt solid black;height:25.5pt'>Показания на расчетную дату</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 style='height:12.75pt'></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=6 height=17 class=xl118 style='border-right:.5pt solid black;
+  height:12.75pt'>Прибор опломбирован</td>
+  <td colspan=6 class=xl100 style='border-right:.5pt solid black;border-left:
+  none'>ДА</td>
+  <td colspan=6 class=xl100 style='border-right:.5pt solid black;border-left:
+  none'>ДА</td>
+  <td colspan=5 class=xl73 style='border-right:.5pt solid black;border-left:
+  none'>&nbsp;</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=6 rowspan=2 height=34 class=xl120 style='border-bottom:.5pt solid black;
+  height:25.5pt'>Тип отопительного прибора. <br>
+    Способ монтажа</td>
+  <td colspan=5 class=xl101>Конвектор</td>
+  <td class=xl72 align=center style='border-top:none'><input type="checkbox"></td>
+  <td colspan=5 class=xl101 style='border-left:none'>Конвектор</td>
+  <td class=xl72 align=center style='border-top:none'><input type="checkbox"></td>
+  <td colspan=5 rowspan=2 class=xl102 width=150 style='border-right:.5pt solid black;
+  border-bottom:.5pt solid black;width:115pt'>** Монтаж согласно инструкции
+  Danfoss</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=5 height=17 class=xl103 style='height:12.75pt'>Биметаллический</td>
+  <td class=xl74 align=center><input type="checkbox"></td>
+  <td colspan=5 class=xl103 style='border-left:none'>Биметаллический</td>
+  <td class=xl74 align=center><input type="checkbox"></td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=23 height=17 class=xl66 style='height:12.75pt'><br>Настоящий Акт
+  составлен в двух экземплярах.</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl65 colspan=22 style='height:12.75pt;mso-ignore:colspan'>Собственник
+  жилого помещения
+  _______________________________________________________________</td>
+  <td colspan=2 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl65 colspan=22 style='height:12.75pt;mso-ignore:colspan'>Сведения
+  об организации, осуществившей монтаж прибора учета _____ООО
+  &quot;СтройЭкоПроект&quot;_________</td>
+  <td colspan=2 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl75 style='height:12.75pt'>_ _ _<span style='display:
+  none'> _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<span
+  style='mso-spacerun:yes'> </span></span></td>
+  <td class=xl76 colspan=2 style='mso-ignore:colspan'>линия отреза</td>
+  <td class=xl75>_ _ _<span style='display:none'> _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+  _ _ _ _<span style='mso-spacerun:yes'> </span></span></td>
+  <td class=xl75 colspan=4 style='mso-ignore:colspan'>_ _ _ _ _ _ _ _ _ _ _<span
+  style='display:none'> _ _ _ _ _ _ _ _ _ _ _<span
+  style='mso-spacerun:yes'> </span></span></td>
+  <td class=xl75 colspan=8 style='mso-ignore:colspan'>_ _ _ _ _ _ _ _ _ _ _ _ _
+  _ _ _ _ _ _ _ _ _<span style='display:none'><span
+  style='mso-spacerun:yes'> </span></span></td>
+  <td class=xl75 colspan=8 style='mso-ignore:colspan'>_ _ _ _ _ _ _ _ _ _ _ _ _
+  _ _ _ _ _ _<span style='mso-spacerun:yes'> </span></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=11 height=17 style='height:12.75pt'></td>
+  <td colspan=10 class=xl65><br>АКТ</td>
+  <td class=xl65 colspan=2 style='mso-ignore:colspan'>г.Москва</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=6 height=17 style='height:12.75pt'></td>
+  <td colspan=14 class=xl65>Замены / программирования распределителей INDIV</td>
+  <td colspan=3 class=xl123 align=center>{{date_time}}</td>
+  <td></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl66 colspan=3 style='height:15.0pt;mso-ignore:colspan'>по адресу:</td>
+  <td colspan=20 class=xl124 align=left>{{list.address_complane}}</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=23 height=17 class=xl125 style='height:12.75pt'>Сведения об
+  установленных квартирных приборах учета:</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=6 height=17 class=xl118 style='border-right:.5pt solid black;
+  height:12.75pt'>&nbsp;</td>
+  <td colspan=6 class=xl118 style='border-right:.5pt solid black;border-left:
+  none'>Замененный прибор</td>
+  <td colspan=6 class=xl118 style='border-right:.5pt solid black;border-left:
+  none'>Установленный прибор (**)</td>
+  <td colspan=5 class=xl118 style='border-right:.5pt solid black;border-left:
+  none'>Примечание</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=6 height=17 class=xl118 style='border-right:.5pt solid black;
+  height:12.75pt'>Наименование ПУ</td>
+  <td colspan=6 class=xl118 style='border-right:.5pt solid black;border-left:
+  none'>INDIV-X-10<span style='mso-spacerun:yes'>  </span>R<span
+  style='mso-spacerun:yes'>  </span>RT</td>
+  <td colspan=6 class=xl118 style='border-right:.5pt solid black;border-left:
+  none'>INDIV-X-10<span style='mso-spacerun:yes'>  </span>R<span
+  style='mso-spacerun:yes'>  </span>RT</td>
+  <td colspan=5 class=xl118 style='border-right:.5pt solid black;border-left:
+  none'>&nbsp;</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=6 rowspan=4 height=68 class=xl120 style='border-right:.5pt solid black;
+  border-bottom:.5pt solid black;height:51.0pt'>Заводской номер</td>
+  <td class=xl73 style='border-top:none;border-left:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl93 style='border-top:none'>&nbsp;</td>
+  <td class=xl73 style='border-top:none;border-left:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl93 style='border-top:none'>&nbsp;</td>
+  <td colspan=5 rowspan=4 class=xl101 style='border-right:.5pt solid black;
+  border-bottom:.5pt solid black'><span style='mso-spacerun:yes'>  </span></td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl73 style='height:12.75pt;border-top:none;border-left:
+  none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl93 style='border-top:none'>&nbsp;</td>
+  <td class=xl73 style='border-top:none;border-left:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl93 style='border-top:none'>&nbsp;</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl73 style='height:12.75pt;border-top:none;border-left:
+  none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl93 style='border-top:none'>&nbsp;</td>
+  <td class=xl73 style='border-top:none;border-left:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl93 style='border-top:none'>&nbsp;</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl73 style='height:12.75pt;border-top:none;border-left:
+  none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl93 style='border-top:none'>&nbsp;</td>
+  <td class=xl73 style='border-top:none;border-left:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl92 style='border-top:none'>&nbsp;</td>
+  <td class=xl93 style='border-top:none'>&nbsp;</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=6 rowspan=9 height=153 class=xl121 width=180 style='border-right:
+  .5pt solid black;border-bottom:.5pt solid black;height:114.75pt;width:138pt'><font
+  class="font9">Текущие показания на момент установки /замены (*)<br>
+    <br>
+    <br>
+    <br>
+    <br>
+    </font><font class="font12"><br>
+    *вносятся все показания, видимые на дисплее прибора</font></td>
+  <td colspan=5 rowspan=2 class=xl127 style='border-bottom:.5pt solid black'>Дисплей
+  не работает</td>
+  <td rowspan=2 class=xl72 align=center style='border-bottom:.5pt solid black;
+  border-top:none'><input type="checkbox"></td>
+  <td colspan=6 rowspan=9 class=xl128 style='border-right:.5pt solid black;
+  border-bottom:.5pt solid black'><br>
+    Текущие показания:<br>
+    <br>
+    <span style='mso-spacerun:yes'>     </span>__0_______________<br>
+    <br>
+    <br>
+    <br>
+    Показания на расчетную дату<br>
+    <span style='mso-spacerun:yes'>    </span><br>
+    <span style='mso-spacerun:yes'>    </span>___0_______________</td>
+  <td colspan=4 rowspan=4 class=xl126 width=120 style='border-bottom:.5pt solid black;
+  width:92pt'>Установка нового счетчика</td>
+  <td rowspan=4 class=xl72 align=center style='border-bottom:.5pt solid black;
+  border-top:none'><input type="checkbox"></td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 style='height:12.75pt'></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=5 rowspan=2 height=34 class=xl126 width=150 style='border-bottom:
+  .5pt solid black;height:25.5pt;width:115pt'>Err без видимых <br>
+    повреждений пломбы</td>
+  <td rowspan=2 class=xl129 align=center width=30 style='border-bottom:.5pt solid black;
+  border-top:none;width:23pt'><input type="checkbox"></td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 style='height:12.75pt'></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=5 height=17 class=xl101 style='height:12.75pt;border-left:none'>По
+  месту работает</td>
+  <td class=xl72 align=center style='border-top:none'><input type="checkbox"></td>
+  <td colspan=4 rowspan=5 class=xl126 width=120 style='border-bottom:.5pt solid black;
+  width:92pt'>Сброс ошибки, установка на радиатор</td>
+  <td rowspan=5 class=xl72 align=center style='border-bottom:.5pt solid black;
+  border-top:none'><input type="checkbox"></td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=6 rowspan=2 height=34 class=xl119 style='border-right:.5pt solid black;
+  height:25.5pt'>Текущие показания</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 style='height:12.75pt'></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=6 rowspan=2 height=34 class=xl119 style='border-right:.5pt solid black;
+  border-bottom:.5pt solid black;height:25.5pt'>Показания на расчетную дату</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 style='height:12.75pt'></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=6 height=17 class=xl118 style='border-right:.5pt solid black;
+  height:12.75pt'>Прибор опломбирован</td>
+  <td colspan=6 class=xl100 style='border-right:.5pt solid black;border-left:
+  none'>ДА</td>
+  <td colspan=6 class=xl100 style='border-right:.5pt solid black;border-left:
+  none'>ДА</td>
+  <td colspan=5 class=xl73 style='border-right:.5pt solid black;border-left:
+  none'>&nbsp;</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=6 rowspan=2 height=34 class=xl120 style='border-bottom:.5pt solid black;
+  height:25.5pt'>Тип отопительного прибора. <br>
+    Способ монтажа</td>
+  <td colspan=5 class=xl101>Конвектор</td>
+  <td class=xl72 align=center style='border-top:none'><input type="checkbox"></td>
+  <td colspan=5 class=xl101 style='border-left:none'>Конвектор</td>
+  <td class=xl72 align=center style='border-top:none'><input type="checkbox"></td>
+  <td colspan=5 rowspan=2 class=xl102 width=150 style='border-right:.5pt solid black;
+  border-bottom:.5pt solid black;width:115pt'>** Монтаж согласно инструкции
+  Danfoss</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=5 height=17 class=xl103 style='height:12.75pt'>Биметаллический</td>
+  <td class=xl74 align=center><input type="checkbox"></td>
+  <td colspan=5 class=xl103 style='border-left:none'>Биметаллический</td>
+  <td class=xl74 align=center><input type="checkbox"></td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=23 height=17 class=xl66 style='height:12.75pt'>Настоящий Акт
+  составлен в двух экземплярах.</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl65 colspan=22 style='height:12.75pt;mso-ignore:colspan'>Собственник
+  жилого помещения
+  _______________________________________________________________</td>
+  <td colspan=2 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl65 colspan=18 style='height:12.75pt;mso-ignore:colspan'>Сведения
+  об организации, осуществившей монтаж прибора учета _____ООО &quot;СтройЭкоПроект&quot;_________</span></td>
+  <td align=left valign=top>
+  
+  
+  
+  
+  
+   <v:imagedata src="image001.png" o:title=""/>
+   <o:lock v:ext="edit" aspectratio="f"/>
+   <!--[if mso]><x:ClientData ObjectType="Pict">
+    <x:SizeWithCells/>
+    <x:Locked>False</x:Locked>
+    <x:CF>Bitmap</x:CF>
+    <x:AutoPict/>
+   </x:ClientData>
+   <![endif]--></v:shape><span style='mso-ignore:vglayout2'>
+  
+ <div class="more"></div>  <!-- Перенос на след страницу при печати --> 
+  <table cellpadding=0 cellspacing=0>
+   <tr>
+    <td height=17 width=30 style='height:12.75pt;width:23pt'></td>
+   </tr>
+  </table>
+  </span></td>
+  <td colspan=5 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 colspan=2 style='height:12.75pt;mso-ignore:colspan'></td>
+  <td colspan=5 rowspan=2 class=xl122>{{list.numer_complane}}</td>
+  <td colspan=2 class=xl65 style='mso-ignore:colspan'></td>
+  <td colspan=14 class=xl65>АКТ ВЫПОЛНЕННЫХ РАБОТ №</td>
+  <td></td>
+ </tr>
+ <tr height=21 style='mso-height-source:userset;height:15.75pt'>
+  <td height=21 colspan=2 style='height:15.75pt;mso-ignore:colspan'></td>
+  <td colspan=16 class=x177_1><img src="{{ url_for('prints.static', filename='complaint/image001.png/') }}" height="50" align="right"></td>
+  <td colspan=14 rowspan=2></td>
+  <td></td>
+ </tr>
+ <!--
+ <tr height=21 style='mso-height-source:userset;height:15.75pt'>
+  <td height=21 colspan=9 style='height:15.75pt;mso-ignore:colspan'></td>
+  <td></td>
+ </tr>
+ -->
+ <tr height=30 style='height:22.5pt'>
+  <td colspan=4 height=30 class=xl77 style='height:22.5pt'>Заказчик:</td>
+  <td colspan=7 class=xl114 style='border-right:.5pt solid black'>Частное лицо</td>
+  <td rowspan=9></td>
+  <td colspan=6 rowspan=2 class=xl94>Номер рекламации</td>
+  <td colspan=5 class=xl115 style='border-right:.5pt solid black'>{{list.numer_complane}}{% if list.date_complited_fake == "1"  %}*{% endif %}</td>
+  <td></td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.0pt'>
+  <td colspan=4 height=20 class=xl77 style='height:15.0pt'>Дата:</td>
+  <td colspan=7 class=xl104 style='border-right:.5pt solid black'> </td>
+  <td class=xl78>от</td>
+  <td colspan=4 class=xl117 style='border-right:.5pt solid black'>{{list.date_creation}}</td>
+  <td></td>
+ </tr>
+ <tr height=19 style='height:14.25pt'>
+  <td colspan=4 rowspan=2 height=36 class=xl94 style='height:27.0pt'>Контактное
+  лицо:</td>
+  <td colspan=7 rowspan=2 class=xl116 width=210 style='border-right:.5pt solid black;
+  border-bottom:.5pt solid black;width:161pt'>{{list.client_name}}</td>
+  <td colspan=6 class=xl77>Тип оборудования</td>
+  <td colspan=5 class=xl109 style='border-right:.5pt solid black'>{{list.device_type}}</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=6 rowspan=2 height=37 class=xl94 style='height:27.75pt'>Серийный
+  номер</td>
+  <td colspan=5 rowspan=2 class=xl110 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td colspan=4 height=20 class=xl77 style='height:15.0pt'>Телефон:</td>
+  <td colspan=7 class=xl106 style='border-right:.5pt solid black'>{{list.client_phone_num}}</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=4 height=17 class=xl77 style='height:12.75pt'>Эл. почта:</td>
+  <td colspan=7 class=xl79 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td colspan=6 class=xl77>Год выпуска</td>
+  <td colspan=5 class=xl79 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=4 rowspan=3 height=51 class=xl94 style='height:38.25pt'>Местонахождение<br>
+    оборудования</td>
+  <td colspan=7 rowspan=3 class=xl116 width=210 style='border-right:.5pt solid black;
+  border-bottom:.5pt solid black;width:161pt'>{{list.address_complane}}</td>
+  <td class=xl77 colspan=6 style='mso-ignore:colspan'>Дата начала гарантийного
+  срока</td>
+  <td colspan=5 class=xl96 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=3 rowspan=2 height=34 class=xl112 style='border-right:.5pt solid black;
+  border-bottom:.5pt solid black;height:25.5pt'>Информация<br>
+    по АСЦ</td>
+  <td class=xl80 colspan=3 style='mso-ignore:colspan;border-right:.5pt solid black'>Наименование
+  АСЦ</td>
+  <td colspan=5 rowspan=2 class=xl113 style='border-right:.5pt solid black;
+  border-bottom:.5pt solid black'>ИП Дякин И.А.<br>
+    <br>
+    Химки</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl83 colspan=3 style='height:12.75pt;mso-ignore:colspan;
+  border-right:.5pt solid black'>ФО, город АСЦ</td>
+  <td></td>
+ </tr>
+ <tr height=12 style='mso-height-source:userset;height:9.0pt'>
+  <td colspan=15 rowspan=2 height=29 style='height:21.75pt'></td>
+  <td colspan=8></td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=4 height=17 class=xl77 style='height:12.75pt'>Данные верны</td>
+  <td colspan=4 class=xl79 align=center style='border-right:.5pt solid black'><input type="checkbox" checked></td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=5 rowspan=2 height=34 class=xl95 style='border-right:.5pt solid black;
+  border-bottom:.5pt solid black;height:25.5pt'>Заявленная <br>
+    неисправность</td>
+  <td colspan=18 rowspan=2 class=xl107 align=left width=540 style='border-right:
+  .5pt solid black;border-bottom:.5pt solid black;width:414pt'>{{list.description_complane}}</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 style='height:12.75pt'></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=5 rowspan=2 height=34 class=xl95 style='border-right:.5pt solid black;
+  border-bottom:.5pt solid black;height:25.5pt'>Фактическая <br>
+    неисправность</td>
+  <td class=xl79 style='border-top:none;border-left:none'>&nbsp;</td>
+  <td class=xl67 align=center style='border-top:none'><input type="checkbox"></td>
+  <td colspan=16 class=xl108 style='border-right:.5pt solid black'>Не работает
+  дисплей (батарейка)</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl79 style='height:12.75pt;border-top:none;border-left:
+  none'>&nbsp;</td>
+  <td class=xl67 align=center style='border-top:none'><input type="checkbox"></td>
+  <td colspan=16 class=xl99 style='border-right:.5pt solid black'>Err без
+  видимых повреждений пломбы</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=6 height=17 class=xl79 style='height:12.75pt'>&nbsp;</td>
+  <td class=xl67 align=center style='border-top:none'><input type="checkbox"></td>
+  <td colspan=16 class=xl99 style='border-right:.5pt solid black'>Не передает
+  данные по радио<span style='mso-spacerun:yes'> </span></td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=6 height=17 class=xl79 style='height:12.75pt'>&nbsp;</td>
+  <td class=xl67 align=center style='border-top:none'><input type="checkbox"></td>
+  <td colspan=16 class=xl98 style='border-right:.5pt solid black'>Другое</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=23 height=17 class=xl79 style='border-right:.5pt solid black;
+  height:12.75pt'>&nbsp;</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl79 colspan=5 style='height:12.75pt;mso-ignore:colspan;
+  border-right:.5pt solid black'>Произведенные работы</td>
+  <td class=xl79 style='border-top:none;border-left:none'>&nbsp;</td>
+  <td class=xl67 align=center style='border-top:none'><input type="checkbox"></td>
+  <td colspan=16 class=xl67 style='border-right:.5pt solid black'>Замена на</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=23 height=17 class=xl79 style='border-right:.5pt solid black;
+  height:12.75pt'>&nbsp;</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=6 height=17 class=xl79 style='height:12.75pt'>&nbsp;</td>
+  <td class=xl67 align=center style='border-top:none'><input type="checkbox"></td>
+  <td colspan=16 class=xl67 style='border-right:.5pt solid black'>1. Сброс
+  ошибки, 2. Замена пломбы, 3. Установка на радиатор</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=23 height=17 class=xl79 style='border-right:.5pt solid black;
+  height:12.75pt'>&nbsp;</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 class=xl86 colspan=5 style='height:12.75pt;mso-ignore:colspan;
+  border-right:.5pt solid black'>Рекомендации, заключе<span style='display:
+  none'>ние</span></td>
+  <td class=xl87 style='border-top:none;border-left:none'>&nbsp;</td>
+  <td colspan=17 class=xl67 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=23 height=17 class=xl136 style='height:12.75pt'></td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=2 rowspan=2 height=34 class=xl137 style='border-right:.5pt solid black;
+  border-bottom:.5pt solid black;height:25.5pt'>Номер<br>
+    п/п</td>
+  <td colspan=7 rowspan=2 class=xl137 style='border-right:.5pt solid black;
+  border-bottom:.5pt solid black'>Название запчасти</td>
+  <td colspan=2 rowspan=2 class=xl137 style='border-right:.5pt solid black;
+  border-bottom:.5pt solid black'>Кол-во</td>
+  <td colspan=3 rowspan=2 class=xl131 style='border-right:.5pt solid black;
+  border-bottom:.5pt solid black'>Артикул</td>
+  <td rowspan=10></td>
+  <td colspan=5 rowspan=2 class=xl137 style='border-right:.5pt solid black;
+  border-bottom:.5pt solid black'>Вид работ</td>
+  <td colspan=3 rowspan=2 class=xl137 style='border-right:.5pt solid black;
+  border-bottom:.5pt solid black'>Кол-во<br>
+    часов</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 style='height:12.75pt'></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=2 height=17 class=xl139 style='height:12.75pt'>1</td>
+  <td class=xl79 style='border-top:none'>&nbsp;</td>
+  <td colspan=6 class=xl67>INDIV-X-10<span style='mso-spacerun:yes'> 
+  </span>R<span style='mso-spacerun:yes'>  </span>RT</td>
+  <td colspan=2 class=xl79 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td colspan=3 class=xl140 style='border-right:.5pt solid black'>{{list.device_type}}</td>
+  <td class=xl79 style='border-top:none'>&nbsp;</td>
+  <td colspan=4 class=xl130 style='border-right:.5pt solid black'>Диагностика</td>
+  <td colspan=3 class=xl67 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=2 height=17 class=xl139 style='height:12.75pt'>2</td>
+  <td colspan=7 class=xl79>&nbsp;</td>
+  <td colspan=2 class=xl79 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td colspan=3 class=xl67 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td class=xl79 style='border-top:none'>&nbsp;</td>
+  <td colspan=4 class=xl130 style='border-right:.5pt solid black'>Ремонт</td>
+  <td class=xl67 style='border-top:none'>&nbsp;</td>
+  <td class=xl67 align=center style='border-top:none'><input type="checkbox" checked></td>
+  <td class=xl68 style='border-top:none'>&nbsp;</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=2 height=17 class=xl139 style='height:12.75pt'>3</td>
+  <td colspan=7 class=xl79>&nbsp;</td>
+  <td colspan=2 class=xl79 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td colspan=3 class=xl67 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td class=xl79 style='border-top:none'>&nbsp;</td>
+  <td colspan=4 class=xl130 style='border-right:.5pt solid black'>Поддержка
+  продаж</td>
+  <td colspan=3 class=xl67 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=2 height=17 class=xl139 style='height:12.75pt'>4</td>
+  <td colspan=7 class=xl79>&nbsp;</td>
+  <td colspan=2 class=xl79 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td colspan=3 class=xl67 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td class=xl79 style='border-top:none'>&nbsp;</td>
+  <td colspan=4 class=xl130 style='border-right:.5pt solid black'>Обслуживание</td>
+  <td colspan=3 class=xl67 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=2 height=17 class=xl139 style='height:12.75pt'>5</td>
+  <td colspan=7 class=xl79>&nbsp;</td>
+  <td colspan=2 class=xl79 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td colspan=3 class=xl67 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td class=xl79 style='border-top:none'>&nbsp;</td>
+  <td colspan=4 class=xl130 style='border-right:.5pt solid black'>АНД</td>
+  <td colspan=3 class=xl67 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=2 height=17 class=xl139 style='height:12.75pt'>6</td>
+  <td colspan=7 class=xl79>&nbsp;</td>
+  <td colspan=2 class=xl79 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td colspan=3 class=xl67 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td class=xl79 style='border-top:none'>&nbsp;</td>
+  <td colspan=4 class=xl130 style='border-right:.5pt solid black'>ШМР</td>
+  <td colspan=3 class=xl67 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=2 height=17 class=xl139 style='height:12.75pt'>7</td>
+  <td colspan=7 class=xl79>&nbsp;</td>
+  <td colspan=2 class=xl79 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td colspan=3 class=xl67 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td class=xl79 style='border-top:none'>&nbsp;</td>
+  <td colspan=4 class=xl130 style='border-right:.5pt solid black'>Иное
+  (________)</td>
+  <td colspan=3 class=xl67 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=2 height=17 class=xl137 style='height:12.75pt'>8</td>
+  <td colspan=7 class=xl110>&nbsp;</td>
+  <td colspan=2 class=xl110 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td colspan=3 class=xl69 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td colspan=5 class=xl138 style='border-right:.5pt solid black'>Кол-во
+  исполнителей</td>
+  <td class=xl88 colspan=3 style='mso-ignore:colspan;border-right:.5pt solid black'>Кол-во
+  часов</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=6 height=17 class=xl131 style='height:12.75pt'>&nbsp;</td>
+  <td colspan=4 class=xl131>Исполнитель 1</td>
+  <td colspan=4 class=xl131>Исполнитель 2</td>
+  <td class=xl89></td>
+  <td colspan=8 class=xl131>&nbsp;</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=6 height=17 class=xl94 style='height:12.75pt'>Начало работ (дата
+  / время):</td>
+  <td colspan=4 class=xl79 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td colspan=4 class=xl67 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td></td>
+  <td colspan=8 class=xl132 style='border-right:.5pt solid black'>Пожелания
+  заказчика</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=6 height=17 class=xl94 style='height:12.75pt'>Окончание работ
+  (дата / время):</td>
+  <td colspan=4 class=xl79 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td colspan=4 class=xl67 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td></td>
+  <td colspan=8 class=xl79 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=6 height=17 class=xl94 style='height:12.75pt'>Общий пробег, км:</td>
+  <td colspan=4 class=xl79 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td colspan=4 class=xl67 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td></td>
+  <td colspan=8 class=xl79 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=6 height=17 class=xl94 style='height:12.75pt'>Время в пути, ч:</td>
+  <td colspan=4 class=xl79 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td colspan=4 class=xl67 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td></td>
+  <td colspan=8 class=xl79 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=6 height=17 class=xl94 style='height:12.75pt'>Выездов:</td>
+  <td colspan=4 class=xl79 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td colspan=4 class=xl67 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td></td>
+  <td colspan=8 class=xl133 style='border-right:.5pt solid black'>Все работы
+  выполненны в установленный срок</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=6 height=17 class=xl135 style='height:12.75pt'>Время ожидания:</td>
+  <td colspan=4 class=xl79 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td colspan=4 class=xl67 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td></td>
+  <td colspan=8 class=xl133 style='border-right:.5pt solid black'>Претензий к
+  объему и качеству работ не имею</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=6 height=17 class=xl135 style='height:12.75pt'>Фактическое время
+  в пути:</td>
+  <td colspan=4 class=xl79 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td colspan=4 class=xl67 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td></td>
+  <td colspan=8 class=xl79 style='border-right:.5pt solid black'>&nbsp;</td>
+  <td></td>
+ </tr>
+ <tr height=21 style='height:15.75pt'>
+  <td height=21 colspan=24 style='height:15.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 colspan=13 style='height:12.75pt;mso-ignore:colspan'></td>
+  <td class=xl71 align=center><input type="checkbox" checked></td>
+  <td class=xl71>&nbsp;</td>
+  <td class=xl71>&nbsp;</td>
+  <td class=xl71>&nbsp;</td>
+  <td class=xl71>&nbsp;</td>
+  <td class=xl71 align=center><input type="checkbox" checked></td>
+  <td class=xl71>&nbsp;</td>
+  <td class=xl71>&nbsp;</td>
+  <td class=xl71>&nbsp;</td>
+  <td class=xl71>&nbsp;</td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=2 rowspan=2 height=38 class=xl89 style='height:28.5pt'>М.П.</td>
+  <td class=xl90 colspan=4 style='mso-ignore:colspan'>(Подпись исполнителя 1)</td>
+  <td class=xl91></td>
+  <td class=xl90 colspan=4 style='mso-ignore:colspan'>(Расшифровка подписи)</td>
+  <td colspan=2 class=xl91 style='mso-ignore:colspan'></td>
+  <td colspan=2 rowspan=2 class=xl89>М.П.</td>
+  <td class=xl90 colspan=3 style='mso-ignore:colspan'>(Подпись заказчика)</td>
+  <td colspan=2 class=xl91 style='mso-ignore:colspan'></td>
+  <td colspan=3 rowspan=2 class=xl134>(Расшифровка <br>
+    подписи)</td>
+  <td></td>
+ </tr>
+ <tr height=21 style='mso-height-source:userset;height:15.75pt'>
+  <td colspan=5 height=21 style='height:15.75pt'></td>
+  <td colspan=6></td>
+  <td colspan=5></td>
+  <td></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td colspan=2 height=17 style='height:12.75pt'></td>
+  <td class=xl90 colspan=4 style='mso-ignore:colspan'>(Подпись исполнителя 2)</td>
+  <td class=xl91></td>
+  <td colspan=4 class=xl90>(Расшифровка подписи)<span
+  style='mso-spacerun:yes'> </span></td>
+  <td colspan=4 class=xl91 style='mso-ignore:colspan'></td>
+  <td class=xl90 colspan=5 style='mso-ignore:colspan'>(номер доверенности, дата)</td>
+  <td colspan=3 class=xl91></td>
+  <td></td>
+ </tr>
+ <![if supportMisalignedColumns]>
+ <tr height=0 style='display:none'>
+  <td width=30 style='width:23pt'></td>
+  <td width=30 style='width:23pt'></td>
+  <td width=30 style='width:23pt'></td>
+  <td width=30 style='width:23pt'></td>
+  <td width=30 style='width:23pt'></td>
+  <td width=30 style='width:23pt'></td>
+  <td width=30 style='width:23pt'></td>
+  <td width=30 style='width:23pt'></td>
+  <td width=30 style='width:23pt'></td>
+  <td width=30 style='width:23pt'></td>
+  <td width=30 style='width:23pt'></td>
+  <td width=30 style='width:23pt'></td>
+  <td width=30 style='width:23pt'></td>
+  <td width=30 style='width:23pt'></td>
+  <td width=30 style='width:23pt'></td>
+  <td width=30 style='width:23pt'></td>
+  <td width=30 style='width:23pt'></td>
+  <td width=30 style='width:23pt'></td>
+  <td width=30 style='width:23pt'></td>
+  <td width=30 style='width:23pt'></td>
+  <td width=30 style='width:23pt'></td>
+  <td width=30 style='width:23pt'></td>
+  <td width=30 style='width:23pt'></td>
+  <td width=101 style='width:76pt'></td>
+ </tr>
+ <![endif]>
+</table>
+
+ <div class="more"></div>  <!-- Перенос на след страницу при печати -->
+     {% endfor %} 
+ {% endif %} 
+
+
+{% if match_error %}
+	<p>{{ match_error }}</p>
+{% endif %}
+
+
+
+</body>
+
+</html>

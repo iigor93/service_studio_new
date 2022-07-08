@@ -1,0 +1,31 @@
+version: "3.9"
+services:
+
+  flask-api:
+
+    image: iigor93/service_studio_new:$GITHUB_REF_NAME-$GITHUB_RUN_ID
+    ports:
+    - "5000:5000"
+    depends_on:
+      postgres_db:
+        condition: service_healthy
+
+        
+
+     
+  postgres_db:
+    image: postgres:12.4-alpine
+    environment:
+      POSTGRES_PASSWORD: $DB_PASSWORD  #  
+      POSTGRES_DB: $DB_NAME #  
+      POSTGRES_USER: $DB_USER #  
+    restart: always
+    ports:
+    - "5430:5432"
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
