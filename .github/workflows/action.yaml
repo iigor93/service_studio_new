@@ -1,0 +1,49 @@
+name: Build and deploy action
+on: [push]
+jobs:
+  build_and_push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: clone code
+        uses: actions/checkout@v2
+      - name: docker build
+        run: docker build -t iigor93/service_studio_new:$GITHUB_REF_NAME-$GITHUB_RUN_ID .
+      - name: docker login
+        run: echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+      - name: docker push
+        run: docker push iigor93/service_studio_new:$GITHUB_REF_NAME-$GITHUB_RUN_ID
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build_and_push
+    env:
+      DB_USER: ${{ secrets.DB_USER }}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      DB_NAME: ${{ secrets.DB_NAME }}
+      
+    steps:
+      - name: clone code
+        uses: actions/checkout@v2
+      - name: render configs
+        run: |
+          mkdir skypro_flask
+          cat docker-compose-server.yaml | envsubst > skypro_flask/docker-compose.yaml
+      - name: clone files to server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: ${{ secrets.PORT }}
+          source: "skypro_flask/docker-compose.yaml"
+          target: "flask_app"
+          strip_components: 1
+      - name: run docker-compose
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd flask_app
+            echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose up -d
