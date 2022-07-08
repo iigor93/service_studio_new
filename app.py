@@ -33,7 +33,7 @@ def register_blueprints(flask_app):
 
 def register_extensions(flask_app):
     db.init_app(flask_app)
-    create_data(flask_app, db)
+    #create_data(flask_app, db)
 
 
 def create_data(flask_app, database):
