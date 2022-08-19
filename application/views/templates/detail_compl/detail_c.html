@@ -129,6 +129,8 @@
 
     {% endif %}
 
+    {% if admin == 'admin' %}
+
     {% if complain.status_complane == 'done' %}
 
     <td align="center">
@@ -173,9 +175,11 @@
       </div>
     </td>
     {% endif %}
+    {% endif %}
   </tr>
 </table><br>
 <br>
+{% if admin == 'admin' %}
 <form method="post">
   <select name="delete_complane">
     <option>
@@ -188,6 +192,7 @@
   <input type="hidden" value="{{complain.id}}" name="id">
   <input type="submit" value="Удалить">
 </form>
+{% endif %}
 
 {% else %}
 <p>No complanes are available.</p>

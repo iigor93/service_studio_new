@@ -3,7 +3,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>{{descr}}</title>
 <link rel="stylesheet" type="text/css" href="{{ url_for('complaint.static', filename='complaint/file.css/') }}">
-<div align="right" style="font-family:courier;">Система регистрации рекламаций v3.0 Jino
+<div align="right" style="font-family:courier;">Система регистрации рекламаций v3.1 Jino
 <font color="blue">User: {{user_name | capitalize}} <a href="{{url_for('login_logout.logout')}}">LOGOUT</a></font>
 </div>
  </head>
@@ -12,9 +12,10 @@
 
 <a href="{{url_for('complaint.main')}}"><img src="{{ url_for('complaint.static', filename='complaint/images/homepage.png/') }}" width="30" height="30" alt="На главную"></a>
 <a href="{{url_for('complaint.at_work')}}"><img src="{{ url_for('complaint.static', filename='complaint/images/at_work.png/') }}" width="30" height="30" alt="at_work"></a>
+{% if admin == 'admin' %}
 <a href="{{url_for('account.all_accounts')}}"><img src="{{ url_for('complaint.static', filename='complaint/images/account.png/') }}" width="30" height="30" alt="accounts"></a>
 <a href=""><img src="{{ url_for('complaint.static', filename='complaint/images/invoice.png/') }}" width="30" height="30" alt="invoices"></a>
-
+{% endif %}
 
  {% block content %}
  {% endblock %}

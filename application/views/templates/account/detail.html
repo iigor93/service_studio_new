@@ -72,5 +72,21 @@
 	{% endfor %}
 
  </table>
+<br>
+<table border="1">
+	<th>Номер</th>
+	<th>Адрес</th>
+
+	{% for item in account.complaint %}
+	<tr>
+		<td> {{ item.numer_complane }} </td>
+		<td> {{ item.address_complane }} </td>
+
+	</tr>
+	{% endfor %}
+
+ </table>
+
+
 {% endif %}
 {% endblock %}

@@ -1,11 +1,26 @@
+import jwt
 from services.decorators import auth_required
 from flask import Blueprint, request, render_template, redirect, url_for, flash
 from application.implemented import complaint_service
 from application.services.parsing import parsing_from_input
 from datetime import datetime, timedelta
+from flask import session
+from config import ALGO, SECRET
 
 
 complaint = Blueprint('complaint', __name__, template_folder='templates', static_folder='static')
+
+
+def check_user():
+    access_token = session.get('access_token')
+    try:
+        user = jwt.decode(access_token, SECRET, algorithms=[ALGO])
+        print('user: ', user)
+        if user.get('user_id') != 5:
+            return False
+        return True
+    except:  # Exception as e:
+        return False
 
 
 @complaint.route('/', methods=['GET', 'POST'], endpoint='main')
@@ -20,6 +35,8 @@ def main():
             if len(search) > 2:
                 data['complane_list'] = complaint_service.get_all_filter(search)
                 data['descr'] = 'ПОИСК'
+                admin = check_user()
+                data['admin'] = 'admin' if admin else 'no_admin'
                 return render_template('complaint/complaint.html', **data)
 
         elif data_received.get('complaint'):
@@ -33,6 +50,8 @@ def main():
 
     data['complane_list'] = complaint_service.get_all()
     data['descr'] = 'Новые рекламации'
+    admin = check_user()
+    data['admin'] = 'admin' if admin else 'no_admin'
 
     return render_template('complaint/complaint.html', **data)
 
@@ -55,4 +74,6 @@ def at_work():
     else:
         pass  # data['complane_list'] = complaint_service.get_all_at_work()
 
+    admin = check_user()
+    data['admin'] = 'admin' if admin else 'no_admin'
     return render_template('complaint/complaint.html', **data)

@@ -5,6 +5,7 @@ from application.implemented import account_service
 from application.services.parsing import input_address
 from datetime import datetime
 from application.app_config import PRICE_DEFAULT, TRANSPORT_HOURS_DEFAULT
+from application.views.complaint import check_user
 
 
 detail_compl = Blueprint('detail_compl', __name__, template_folder='templates', static_folder='static')
@@ -69,4 +70,7 @@ def detail_view(c_id):
     data = {'print_view': 0, 'complane_view_all': 0, 'descr': 'Детальный вид',
             'date_time': datetime.now().date(), 'complain': complaint_service.get_one(c_id),
             'available_accounts': account_service.get_all_filter_closed()}
+
+    admin = check_user()
+    data['admin'] = 'admin' if admin else 'no_admin'
     return render_template('detail_compl/detail_c.html', **data)

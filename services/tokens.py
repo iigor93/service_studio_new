@@ -49,3 +49,34 @@ def check_tokens():
         return True
     return False
 
+
+def check_user():
+    access_token = session.get('access_token')
+    refresh_token = session.get('refresh_token')
+    if access_token:
+        try:
+            user = jwt.decode(access_token, SECRET, algorithms=[ALGO])
+            print('user: ', user)
+            if user.get('user_id') != 5:
+                return False
+        except jwt.exceptions.ExpiredSignatureError as e:  # Exception as e:
+            print("JWT Decode Exception, access_token", e)
+            try:
+                user_refresh = jwt.decode(refresh_token, SECRET, algorithms=[ALGO])
+                db_token = session_service.get_all_filter(refresh_token)
+                if db_token:
+                    session_service.delete(db_token.id)
+                    user = user_service.get_one(user_refresh.get('user_id'))
+                    tokens = generate_tokens(user)
+                    session_update(tokens, user)
+                else:
+                    all_user_tokens = session_service.get_all_by_uid(user_refresh.get('user_id'))
+                    for item in all_user_tokens:
+                        session_service.delete(item.id)
+                    return False
+
+            except jwt.exceptions.ExpiredSignatureError as e:
+                print("JWT Decode Exception, refresh_token", e)
+                return False
+        return True
+    return False
