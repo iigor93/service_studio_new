@@ -3,7 +3,7 @@ from flask import Blueprint, request, render_template, flash
 from application.implemented import account_service
 from datetime import datetime
 from application.services.add_comp_to_account import compl_to_account
-from application.views.complaint import check_user
+from application.services.check_user import check_user
 
 
 account = Blueprint('account', __name__, template_folder='templates', static_folder='static')
@@ -23,7 +23,12 @@ def all_accounts():
         account_service.create(data)
     data['account_list'] = account_service.get_all()
     admin = check_user()
-    data['admin'] = 'admin' if admin else 'no_admin'
+    if admin:
+        data['admin'] = admin.get('role')
+        data['user_name'] = admin.get('user_name')
+    else:
+        data['user_name'] = 'no_user'
+        data['admin'] = 'no_admin'
     return render_template('account/account.html', **data)
 
 
@@ -52,5 +57,10 @@ def account_details(aid):
     account_ = account_service.get_one(aid)
     data = {'descr': 'Детальный вид счета', 'account': account_, 'date_time': datetime.now().date()}
     admin = check_user()
-    data['admin'] = 'admin' if admin else 'no_admin'
+    if admin:
+        data['admin'] = admin.get('role')
+        data['user_name'] = admin.get('user_name')
+    else:
+        data['user_name'] = 'no_user'
+        data['admin'] = 'no_admin'
     return render_template('account/detail.html', **data)

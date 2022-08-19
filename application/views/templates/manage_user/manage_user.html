@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3>Список пользователей</h3>
+
+{% if users_list %}
+<table border="1">
+	<thead>
+		<th>Name</th>
+		<th>Role</th>
+		<th>Delete</th>
+
+	</thead>
+	<tbody>
+	{% for user in users_list %}
+		<tr>
+
+			<td>{{ user.username }}</td>
+			<td>{{ user.role }}</td>
+			<td>
+				<form method="post">
+					  <select name="delete_user">
+						<option>
+						  - - -
+						</option>
+						<option value="delete">
+						  Удалить
+						</option>
+					  </select><br>
+					  <input type="hidden" value="{{user.id}}" name="id">
+					  <input type="submit" value="Удалить">
+					</form>
+			</td>
+		</tr>
+
+	{% endfor %}
+
+	</tbody>
+
+</table>
+<div>
+	<p>Add new user</p>
+	<form method="post">
+        <p>User Name <input type="text" name="new_user_name"></p>
+		<p>Password <input type="text" name="new_user_password"></p>
+		<p>Role (admin, user) <input type="text" name="new_user_role"></p>
+        <p><input type="submit" value="Add"></p>
+	</form><br>
+
+</div>
+
+{% else %}
+    <p>No complanes are available.</p>
+{% endif %}
+
+{% endblock %}
