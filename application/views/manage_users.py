@@ -15,7 +15,15 @@ def all_users():
         data_received = request.form.to_dict()
 
         if data_received.get('delete_user') == 'delete':
-            user_service.delete(data_received.get('id'))
+            user_for_delete = user_service.get_one(data_received.get('id'))
+            if user_for_delete.role == 'admin':
+                all_users_ = user_service.get_all()
+                admins = []
+                for user in all_users_:
+                    if user.role == 'admin':
+                        admins.append(user.username)
+                if len(admins) > 1:
+                    user_service.delete(data_received.get('id'))
 
         if data_received.get('new_user_name'):
             new_user = {'username': data_received.get('new_user_name'),
