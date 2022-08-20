@@ -9,7 +9,7 @@ tg = Blueprint('tg', __name__)
 
 @tg.route('/', methods=['GET', 'POST'], endpoint='telegram')
 def telegram():
-    approved_users = {'igor': '717923644'}
+    approved_users = {'igor': 717923644}
     if request.method == 'POST':
         if request.is_json:
             json_message = request.json
