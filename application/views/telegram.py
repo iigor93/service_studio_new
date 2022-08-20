@@ -9,6 +9,7 @@ tg = Blueprint('tg', __name__)
 
 @tg.route('/', methods=['GET', 'POST'], endpoint='telegram')
 def telegram():
+    approved_users = {'igor': '717923644'}
     if request.method == 'POST':
         if request.is_json:
             json_message = request.json
@@ -16,14 +17,22 @@ def telegram():
                 sender_id = json_message['message']['from'].get('id')
                 sender_last_name = json_message['message']['from'].get('last_name')
                 sender_text = json_message['message'].get('text')
-                sender_chatID = json_message['message']['chat'].get('id')
+                sender_chat_id = json_message['message']['chat'].get('id')
             except KeyError:
                 return 200
+
+            text_response = 'Сегодня ' + str(datetime.now().date())
+
+            if sender_chat_id not in approved_users.values():
+                chat_id = '717923644'
+                text_response = sender_text
+                sender_text = 'ddd'
+            else:
+                chat_id = sender_chat_id
 
             c_beg = str(sender_text)
             c_add = c_beg[1:]
 
-            text_response = 'Сегодня ' + str(datetime.now().date())
 
             if sender_text == '1':
                 text_response = 'С НОВЫМ ГОДОМ!'
@@ -101,7 +110,7 @@ def telegram():
                 \r\nNXXX - поиск по номеру рекламации или тел
                 \r\nAt - все рекламации со статусом в работе"""
 
-            response = jsonify({'code': 200, 'method': 'sendMessage', 'chat_id': '717923644', 'text': text_response})
+            response = jsonify({'code': 200, 'method': 'sendMessage', 'chat_id': chat_id, 'text': text_response})
 
             return response
         else:
