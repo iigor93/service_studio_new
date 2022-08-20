@@ -25,7 +25,7 @@ def telegram():
 
             if sender_chat_id not in approved_users.values():
                 chat_id = '717923644'
-                text_response = sender_text
+                text_response = f'{sender_text} {sender_chat_id}'
                 sender_text = 'ddd'
             else:
                 chat_id = sender_chat_id
