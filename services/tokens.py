@@ -2,7 +2,7 @@ import jwt
 import datetime
 import calendar
 from config import ACCESS_TOKEN_LIFE, REFRESH_TOKEN_LIFE, ALGO, SECRET
-from flask import session, redirect, url_for
+from flask import session
 from implemented import session_service, user_service
 from services.session_update import session_update
 
@@ -56,8 +56,8 @@ def check_user():
     if access_token:
         try:
             user = jwt.decode(access_token, SECRET, algorithms=[ALGO])
-            print('user: ', user)
-            if user.get('user_id') != 5:
+            # print('user: ', user)
+            if user.get('role') != 'admin':
                 return False
         except jwt.exceptions.ExpiredSignatureError as e:  # Exception as e:
             print("JWT Decode Exception, access_token", e)

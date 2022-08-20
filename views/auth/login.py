@@ -39,4 +39,5 @@ def logout():
     session.pop('refresh_token', default=None)
     db_token = session_service.get_all_filter(refresh_token)
     session_service.delete(db_token.id)
-    return f'<h1>Session deleted!<br>{url_for("complaint.main")}</h1>'
+    return redirect(url_for('login_logout.login'))
+    # return f'<h1>Session deleted!<br><a href="{url_for("login_logout.login")}">login</a></h1>'

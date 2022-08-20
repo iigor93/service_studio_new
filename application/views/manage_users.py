@@ -1,7 +1,5 @@
-from services.decorators import auth_required, user_required
-from flask import Blueprint, request, render_template, flash
-from application.implemented import account_service
-from datetime import datetime
+from services.decorators import user_required
+from flask import Blueprint, request, render_template
 from implemented import user_service
 from application.services.check_user import check_user
 
