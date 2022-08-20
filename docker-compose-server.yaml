@@ -26,6 +26,7 @@ services:
     - "5430:5432"
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
+      - ./postgres_tmp:/tmp
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s

@@ -22,11 +22,14 @@ def all_users():
                         admins.append(user.username)
                 if len(admins) > 1:
                     user_service.delete(data_received.get('id'))
+            else:
+                user_service.delete(data_received.get('id'))
 
         if data_received.get('new_user_name'):
             new_user = {'username': data_received.get('new_user_name'),
                         'password': data_received.get('new_user_password'),
-                        'role': data_received.get('new_user_role')}
+                        'role': data_received.get('new_user_role'),
+                        'tg_chat_id': data_received.get('tg_chat_id')}
             user_service.create(new_user)
 
     data = {'users_list': user_service.get_all()}

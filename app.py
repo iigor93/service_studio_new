@@ -1,7 +1,7 @@
 from flask import Flask
 from config import Config
 from db_config import db
-from implemented import user_service
+from flask_migrate import Migrate
 
 # Blueprints
 from views.auth.login import login_logout
@@ -35,12 +35,14 @@ def register_blueprints(flask_app):
 
 def register_extensions(flask_app):
     db.init_app(flask_app)
-    #create_data(flask_app, db)
+    create_data(flask_app, db)
+    migrate = Migrate(flask_app, db)
 
 
 def create_data(flask_app, database):
     with flask_app.app_context():
         database.create_all()
+        print('db created')
 
 
 app = create_app(Config())

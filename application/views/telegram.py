@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
 from datetime import datetime
 from application.implemented import complaint_service
-import json
+from implemented import user_service
 
 
 tg = Blueprint('tg', __name__)
@@ -9,7 +9,8 @@ tg = Blueprint('tg', __name__)
 
 @tg.route('/', methods=['GET', 'POST'], endpoint='telegram')
 def telegram():
-    approved_users = {'igor': 717923644}
+    all_users = user_service.get_all()
+    approved_users = [user.tg_chat_id for user in all_users]
     if request.method == 'POST':
         if request.is_json:
             json_message = request.json
@@ -23,7 +24,7 @@ def telegram():
 
             text_response = 'Сегодня ' + str(datetime.now().date())
 
-            if sender_chat_id not in approved_users.values():
+            if str(sender_chat_id) not in str(approved_users):
                 chat_id = '717923644'
                 text_response = f'{sender_text} {sender_chat_id}'
                 sender_text = 'ddd'
@@ -32,7 +33,6 @@ def telegram():
 
             c_beg = str(sender_text)
             c_add = c_beg[1:]
-
 
             if sender_text == '1':
                 text_response = 'С НОВЫМ ГОДОМ!'

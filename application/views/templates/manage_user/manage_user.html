@@ -8,6 +8,7 @@
 	<thead>
 		<th>Name</th>
 		<th>Role</th>
+		<th>tg_chat_id</th>
 		<th>Delete</th>
 
 	</thead>
@@ -17,6 +18,7 @@
 
 			<td>{{ user.username }}</td>
 			<td>{{ user.role }}</td>
+			<td>{{ user.tg_chat_id }}</td>
 			<td>
 				<form method="post">
 					  <select name="delete_user">
@@ -44,6 +46,7 @@
         <p>User Name <input type="text" name="new_user_name"></p>
 		<p>Password <input type="text" name="new_user_password"></p>
 		<p>Role (admin, user) <input type="text" name="new_user_role"></p>
+		<p>TG_chat_id <input type="text" name="tg_chat_id"></p>
         <p><input type="submit" value="Add"></p>
 	</form><br>
 
