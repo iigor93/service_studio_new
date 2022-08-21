@@ -5,6 +5,7 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 COPY application application
 COPY DAO DAO
+COPY migrations migrations
 COPY services services
 COPY views views
 COPY db_config.py .
