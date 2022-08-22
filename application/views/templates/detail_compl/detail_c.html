@@ -5,6 +5,17 @@
     <td class="d_view">{{ complain.numer_complane }}</td>
     <td>от {{complain.date_creation}}</td>
   </tr>
+  <tr>
+    <td colspan="5">
+      <br><br>
+    <form action="{{ url_for('prints.print_one') }}" method="post" target="_blank">
+		<input name = "date_print" type="date" value="">
+		<input type="hidden" name = "id_" value="{{ complain.id }}">
+		<input type="submit" value="Печать акта">
+	</form>
+    </td>
+
+  </tr>
 </table><br>
 {% if complain %}
 <table border="1">

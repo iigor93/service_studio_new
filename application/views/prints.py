@@ -24,6 +24,23 @@ def print_all():
     return redirect(url_for('complaint.at_work'))
 
 
+@prints.route('/print_one', methods=['GET', 'POST'], endpoint='print_one')
+@auth_required
+def print_one():
+    if request.method == 'POST':
+        data_received = request.form.to_dict()
+        dt_object = data_received.get('date_print')
+        id_ = data_received.get('id_')
+
+        c_list_new = [complaint_service.get_one(id_)]
+
+        if len(c_list_new) == 0:
+            c_list_new = {'ne': 'ne'}
+        data = {'complane_list': c_list_new, 'date_time': dt_object}
+        return render_template('complaint/new2.htm', **data)
+    return redirect(url_for('complaint.at_work'))
+
+
 @prints.route('/empty', methods=['GET', 'POST'], endpoint='print_empty')
 @auth_required
 def print_empty():
