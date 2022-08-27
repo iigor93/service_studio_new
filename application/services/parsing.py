@@ -42,7 +42,8 @@ def parsing_from_input(user_input):
     desc_one = user_input[user_input.find('Неисправность:') + 16: user_input.find('Описание проблемы пользователем:')]
     desc_two = user_input[user_input.find('Описание проблемы пользователем:') + 34:
                           user_input.find('Заключение сервисного')]
-    new_data['description_complane'] = desc_one.strip() + ' ' + desc_two.strip()
+    temp_str = desc_one.strip() + ' ' + desc_two.strip()
+    new_data['description_complane'] = temp_str.replace('(HE)', '')
 
     c_name = user_input[user_input.find('Контактное лицо:') + 17:
                         user_input.find('\r\n', (user_input.find('Контактное лицо:')))]
