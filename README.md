@@ -11,3 +11,6 @@ Flask, Docker, PostgreSQL
 3.1.2 - Добавлена печать одного акта со страницы акта
 
 3.1.3 - Remove "(HE)" from user description for new complaints
+
+3.1.4 - Убрано "(НЕ)" при печати актов; добавлено checkbox для печати полностью пустого акта
+

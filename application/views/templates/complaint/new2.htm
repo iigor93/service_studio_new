@@ -619,7 +619,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
   <td colspan=7 rowspan=2 class=xl116 width=210 style='border-right:.5pt solid black;
   border-bottom:.5pt solid black;width:161pt'>{{list.client_name}}</td>
   <td colspan=6 class=xl77>Тип оборудования</td>
-  <td colspan=5 class=xl109 style='border-right:.5pt solid black'>{{list.device_type}}</td>
+  <td colspan=5 class=xl109 style='border-right:.5pt solid black'>{% if full_empty %}{{list.device_type}}{% endif %}</td>
   <td></td>
  </tr>
  <tr height=17 style='height:12.75pt'>
@@ -693,30 +693,30 @@ xmlns="http://www.w3.org/TR/REC-html40">
   border-bottom:.5pt solid black;height:25.5pt'>Фактическая <br>
     неисправность</td>
   <td class=xl79 style='border-top:none;border-left:none'>&nbsp;</td>
-  <td class=xl67 align=center style='border-top:none'><input type="checkbox"></td>
-  <td colspan=16 class=xl108 style='border-right:.5pt solid black'>Не работает
-  дисплей (батарейка)</td>
+  <td class=xl67 align=center style='border-top:none'>{% if full_empty %}<input type="checkbox">{% endif %}</td>
+  <td colspan=16 class=xl108 style='border-right:.5pt solid black'>{% if full_empty %}Не работает
+  дисплей (батарейка){% endif %}</td>
   <td></td>
  </tr>
  <tr height=17 style='height:12.75pt'>
   <td height=17 class=xl79 style='height:12.75pt;border-top:none;border-left:
   none'>&nbsp;</td>
-  <td class=xl67 align=center style='border-top:none'><input type="checkbox"></td>
-  <td colspan=16 class=xl99 style='border-right:.5pt solid black'>Err без
-  видимых повреждений пломбы</td>
+  <td class=xl67 align=center style='border-top:none'>{% if full_empty %}<input type="checkbox">{% endif %}</td>
+  <td colspan=16 class=xl99 style='border-right:.5pt solid black'>{% if full_empty %}Err без
+  видимых повреждений пломбы{% endif %}</td>
   <td></td>
  </tr>
  <tr height=17 style='height:12.75pt'>
   <td colspan=6 height=17 class=xl79 style='height:12.75pt'>&nbsp;</td>
-  <td class=xl67 align=center style='border-top:none'><input type="checkbox"></td>
-  <td colspan=16 class=xl99 style='border-right:.5pt solid black'>Не передает
-  данные по радио<span style='mso-spacerun:yes'> </span></td>
+  <td class=xl67 align=center style='border-top:none'>{% if full_empty %}<input type="checkbox">{% endif %}</td>
+  <td colspan=16 class=xl99 style='border-right:.5pt solid black'>{% if full_empty %}Не передает
+  данные по радио<span style='mso-spacerun:yes'> </span>{% endif %}</td>
   <td></td>
  </tr>
  <tr height=17 style='height:12.75pt'>
   <td colspan=6 height=17 class=xl79 style='height:12.75pt'>&nbsp;</td>
-  <td class=xl67 align=center style='border-top:none'><input type="checkbox"></td>
-  <td colspan=16 class=xl98 style='border-right:.5pt solid black'>Другое</td>
+  <td class=xl67 align=center style='border-top:none'>{% if full_empty %}<input type="checkbox">{% endif %}</td>
+  <td colspan=16 class=xl98 style='border-right:.5pt solid black'>{% if full_empty %}Другое{% endif %}</td>
   <td></td>
  </tr>
  <tr height=17 style='height:12.75pt'>
@@ -728,8 +728,8 @@ xmlns="http://www.w3.org/TR/REC-html40">
   <td height=17 class=xl79 colspan=5 style='height:12.75pt;mso-ignore:colspan;
   border-right:.5pt solid black'>Произведенные работы</td>
   <td class=xl79 style='border-top:none;border-left:none'>&nbsp;</td>
-  <td class=xl67 align=center style='border-top:none'><input type="checkbox"></td>
-  <td colspan=16 class=xl67 style='border-right:.5pt solid black'>Замена на</td>
+  <td class=xl67 align=center style='border-top:none'>{% if full_empty %}<input type="checkbox">{% endif %}</td>
+  <td colspan=16 class=xl67 style='border-right:.5pt solid black'>{% if full_empty %}Замена на{% endif %}</td>
   <td></td>
  </tr>
  <tr height=17 style='height:12.75pt'>
@@ -739,9 +739,9 @@ xmlns="http://www.w3.org/TR/REC-html40">
  </tr>
  <tr height=17 style='height:12.75pt'>
   <td colspan=6 height=17 class=xl79 style='height:12.75pt'>&nbsp;</td>
-  <td class=xl67 align=center style='border-top:none'><input type="checkbox"></td>
-  <td colspan=16 class=xl67 style='border-right:.5pt solid black'>1. Сброс
-  ошибки, 2. Замена пломбы, 3. Установка на радиатор</td>
+  <td class=xl67 align=center style='border-top:none'>{% if full_empty %}<input type="checkbox">{% endif %}</td>
+  <td colspan=16 class=xl67 style='border-right:.5pt solid black'>{% if full_empty %}1. Сброс
+  ошибки, 2. Замена пломбы, 3. Установка на радиатор{% endif %}</td>
   <td></td>
  </tr>
  <tr height=17 style='height:12.75pt'>
@@ -785,10 +785,10 @@ xmlns="http://www.w3.org/TR/REC-html40">
  <tr height=17 style='height:12.75pt'>
   <td colspan=2 height=17 class=xl139 style='height:12.75pt'>1</td>
   <td class=xl79 style='border-top:none'>&nbsp;</td>
-  <td colspan=6 class=xl67>INDIV-X-10<span style='mso-spacerun:yes'> 
-  </span>R<span style='mso-spacerun:yes'>  </span>RT</td>
+  <td colspan=6 class=xl67>{% if full_empty %}INDIV-X-10<span style='mso-spacerun:yes'> 
+  </span>R<span style='mso-spacerun:yes'>  </span>RT{% endif %}</td>
   <td colspan=2 class=xl79 style='border-right:.5pt solid black'>&nbsp;</td>
-  <td colspan=3 class=xl140 style='border-right:.5pt solid black'>{{list.device_type}}</td>
+  <td colspan=3 class=xl140 style='border-right:.5pt solid black'>{% if full_empty %}{{list.device_type}}{% endif %}</td>
   <td class=xl79 style='border-top:none'>&nbsp;</td>
   <td colspan=4 class=xl130 style='border-right:.5pt solid black'>Диагностика</td>
   <td colspan=3 class=xl67 style='border-right:.5pt solid black'>&nbsp;</td>

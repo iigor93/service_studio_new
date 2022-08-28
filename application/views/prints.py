@@ -19,7 +19,10 @@ def print_all():
 
         if len(c_list_new) == 0:
             c_list_new = {'ne': 'ne'}
-        data = {'complane_list': c_list_new, 'date_time': dt_object}
+        else:
+            for item in c_list_new:
+                item.description_complane = item.description_complane.replace('(HE)', '')
+        data = {'complane_list': c_list_new, 'date_time': dt_object, 'full_empty': 'on'}
         return render_template('complaint/new2.htm', **data)
     return redirect(url_for('complaint.at_work'))
 
@@ -31,12 +34,13 @@ def print_one():
         data_received = request.form.to_dict()
         dt_object = data_received.get('date_print')
         id_ = data_received.get('id_')
+        full_empty = data_received.get('empty')
 
         c_list_new = [complaint_service.get_one(id_)]
 
         if len(c_list_new) == 0:
             c_list_new = {'ne': 'ne'}
-        data = {'complane_list': c_list_new, 'date_time': dt_object}
+        data = {'complane_list': c_list_new, 'date_time': dt_object, 'full_empty': full_empty}
         return render_template('complaint/new2.htm', **data)
     return redirect(url_for('complaint.at_work'))
 
@@ -45,7 +49,9 @@ def print_one():
 @auth_required
 def print_empty():
     c_list_new = {'ne': 'ne'}
-    data = {'complane_list': c_list_new, 'printEmpty': 1}
+    data_received = request.form.to_dict()
+    full_empty = data_received.get('empty')
+    data = {'complane_list': c_list_new, 'printEmpty': 1, 'full_empty': full_empty}
     return render_template('complaint/new2.htm', **data)
 
 

@@ -23,6 +23,7 @@
 	
 	<form action="{{ url_for('prints.print_empty') }}" method="post" target="_blank">
 		<input type="submit" value="Печать пустого акта">
+		<input type="checkbox" name="empty" checked>(Все поля)
 	</form>
 {% endif %}
 
