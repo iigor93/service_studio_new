@@ -1,5 +1,4 @@
 import os
-import pathlib
 from datetime import date
 from config import UPLOAD_FOLDER
 from services.decorators import auth_required
@@ -31,9 +30,13 @@ def uploads_files():
                 continue
             folder_year = f'{date.today().year}'
             folder_month = f'{date.today().month}'
-            # full_filename = f'{folder_year}/{folder_month}/{filename}'
-            # print(full_filename)
-            pathlib.Path(UPLOAD_FOLDER, folder_year, folder_month).mkdir(exist_ok=True)
+
+            path = os.path.join(UPLOAD_FOLDER, folder_year)
+            if not os.path.exists(path):
+                os.mkdir(path)
+            path = os.path.join(UPLOAD_FOLDER, folder_year, folder_month)
+            if not os.path.exists(path):
+                os.mkdir(path)
 
             file.save(os.path.join(UPLOAD_FOLDER, folder_year, folder_month, filename))
             new_date = {'filename': f'{folder_year}/{folder_month}/{filename}',
