@@ -38,6 +38,14 @@
 	<br>
 	<input type="submit" value="Добавить новую рекламацию">
 </form>
+
+	<br><div>Upload scans</div>
+
+<form action="{{ url_for( 'uploads.upload_img' ) }}" method=post enctype=multipart/form-data>
+      <input type=file name=file multiple>
+      <input type=submit value=Upload>
+</form>
+
 {% endif %}
 </td>
 

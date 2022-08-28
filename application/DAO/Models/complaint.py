@@ -23,3 +23,4 @@ class Complaint(db.Model):
     price_status = db.Column(db.Integer, nullable=True)  # Стоимость одной заявки - индекс. в счете выставляется нужная сумма
     transport_hours = db.Column(db.Integer, nullable=True)  # количество часов дороги, для оплаты
     date_at_work = db.Column(db.DateTime, nullable=True)  # Дата когда планируется выезд
+    filename = db.Column(db.String, nullable=True)  # Путь к файлу

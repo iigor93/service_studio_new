@@ -89,6 +89,8 @@ class ComplaintDAO:
             complaint.price_status = complaint_d.get("price_status")
         if complaint_d.get("date_at_work"):
             complaint.date_at_work = complaint_d.get("date_at_work")
+        if complaint_d.get("filename"):
+            complaint.filename = complaint_d.get("filename")
 
         self.session.add(complaint)
         self.session.commit()

@@ -169,3 +169,4 @@ crashlytics-build.properties
 fabric.properties
 /.config.py
 /postgres_tmp/
+/uploads/

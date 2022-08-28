@@ -5,6 +5,18 @@
     <td class="d_view">{{ complain.numer_complane }}</td>
     <td>от {{complain.date_creation}}</td>
   </tr>
+
+    {% if complain.filename %}
+      <tr>
+        <td>
+        {% set url_path = complain.filename.split('/') %}
+        <a href="{{ url_for('uploads.get_img', year=url_path[0], month=url_path[1], filename=url_path[2]) }}" target="_blank">
+          <img src="{{ url_for('complaint.static', filename='complaint/images/act.jpg/') }}" width="30" height="30" alt="АВР">
+        </a>
+        </td>
+      </tr>
+    {% endif %}
+
   <tr>
     <td colspan="5">
       <br><br>
