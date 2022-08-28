@@ -13,6 +13,7 @@ services:
           condition: service_completed_successfully
     volumes:
       - ./config.py:/code/config.py
+      - ./uploads:/code/uploads
 
   flask-api-migrate:
 
@@ -24,6 +25,7 @@ services:
         condition: service_healthy
     volumes:
       - ./config.py:/code/config.py
+      - ./uploads:/code/uploads
     command: flask db upgrade
 
 
