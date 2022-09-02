@@ -2,8 +2,12 @@ from application.implemented import complaint_service
 from application.app_config import PRICE_DEFAULT
 
 
-def compl_to_account(data_string, aid):
-    data_list = data_string.strip().split('\r\n')
+def compl_to_account(data_string, aid, from_account=False):
+    if from_account:
+        data_list = data_string
+    else:
+        data_list = data_string.strip().split('\r\n')
+
     all_complaints = {number: complaint_service.get_all_by_number(number) for number in data_list}
     good_complaints = []
     bad_complaints = []

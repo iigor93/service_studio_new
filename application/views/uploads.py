@@ -1,5 +1,7 @@
 import os
 from datetime import date
+
+from application.services.add_comp_to_account import compl_to_account
 from config import UPLOAD_FOLDER
 from services.decorators import auth_required
 from flask import Blueprint, flash, request, redirect, url_for, send_from_directory
@@ -14,13 +16,16 @@ uploads = Blueprint('uploads', __name__, template_folder='templates', static_fol
 @auth_required
 def uploads_files():
     if request.method == 'POST':
+        data_received = request.form.to_dict()
+
         if 'file' not in request.files:
             flash('No file part')
-            return redirect(url_for('complaint.main'))
+            return redirect(request.referrer)
 
         uploaded_files = request.files.getlist('file')
         files_uploaded = []
         complaints_dont_found = []
+        complaints_without_ext = []
         for file in uploaded_files:
             filename = secure_filename(file.filename)
             complaint_number_file = filename.split('.')[0]
@@ -28,6 +33,7 @@ def uploads_files():
             if complaint == 'Not found':
                 complaints_dont_found.append(f'{filename}')
                 continue
+
             folder_year = f'{date.today().year}'
             folder_month = f'{date.today().month}'
 
@@ -43,9 +49,15 @@ def uploads_files():
                         'id': complaint.id}
             complaint_service.update(new_date)
             files_uploaded.append(f'{filename}')
+            complaints_without_ext.append(complaint_number_file)
+
+        if data_received.get('id'):
+            iid = data_received.get('id')
+            flash(compl_to_account(complaints_without_ext, iid, from_account=True))
+
         flash(f'Files uploaded ({len(files_uploaded)}): {files_uploaded}')
         flash(f'Complaints doesnt exist({len(complaints_dont_found)}): {complaints_dont_found}')
-        return redirect(url_for('complaint.main'))
+        return redirect(request.referrer)
 
 
 @uploads.route('/<year>/<month>/<filename>', methods=['GET', 'POST'], endpoint='get_img')
