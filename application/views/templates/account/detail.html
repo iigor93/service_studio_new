@@ -68,13 +68,15 @@
 	<th>Номер</th>
 	<th>Стоимость</th>
 	<th>Выезд, ч</th>
+	<th>АВР</th>
 	<th>Наличие<br>файлов<br>пользователя</th>
 	{% for item in account.complaint %}
 	<tr>
 		<td><a href="{{ url_for( 'detail_compl.detail_compl', c_id=item.id ) }}" >{{ item.numer_complane }} </a></td>
-		<td align = "center">{{ item.price_status }}</td>
-		<td align = "center">{{ item.transport_hours }}</td>
-		<td align = "center">{% if  item.date_complited_fake != '0' %} ДА {% endif %}</td>
+		<td align="center">{{ item.price_status }}</td>
+		<td align="center">{% if item.transport_hours != 0 %}{{ item.transport_hours }}{% endif %}</td>
+		<td align="center">{% if item.filename %}OK{% endif %}</td>
+		<td align="center">{% if  item.date_complited_fake != '0' %} ДА {% endif %}</td>
 	</tr>
 	{% endfor %}
 
