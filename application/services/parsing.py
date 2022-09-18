@@ -41,6 +41,7 @@ def parsing_from_input_bitrix(user_input):
         tp = tp.split(' ')
         tp.pop()
         tp = ''.join(tp)
+    tp = tp.replace(" ", "")
     new_data['client_phone_num'] = tp
     if len(tp) == 10:  # without +7 or 8 or 7 at begin
         new_data['client_phone_num'] = f'+7({tp[0:3]}){tp[3:6]}-{tp[6:10]}'
