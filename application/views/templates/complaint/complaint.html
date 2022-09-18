@@ -37,6 +37,9 @@
 	<textarea name = "complaint" style = "width:199px; height :50px;"></textarea>
 	<br>
 	<input type="submit" value="Добавить новую рекламацию">
+	<br>
+	<input type="checkbox" id="bitrix_checkbox" checked name="Bitrix24">
+	<label for="bitrix_checkbox">Bitrix24</label>
 </form>
 
 	<br><div>Upload scans</div>
@@ -127,10 +130,10 @@
 			<td align="center"><a href="{{ url_for( 'detail_compl.detail_compl', c_id=list.id ) }}" class="d_view" style="font-size:14pt;">{{ list.numer_complane }}{% if list.date_complited_fake == "1"  %}*{% endif %}
 				</a>
 				<br>{{list.date_creation}}</td>
-			<td width = "200">{{list.description_complane}}</td>
-			<td width = "250">{{list.address_complane}}</td>
+			<td width="200">{{list.description_complane}}</td>
+			<td width="250">{{list.address_complane}}</td>
 			<td>{{list.client_name}}</td>
-			<td align="center"> <a href="{{ url_for( 'detail_compl.detail_compl', c_id=list.id ) }}"> {{list.client_phone_num}}</a></td>
+			<td width="130" align="center"> <a href="{{ url_for( 'detail_compl.detail_compl', c_id=list.id ) }}"> {{list.client_phone_num}}</a></td>
 			<td>{{list.device_type}}</td>
 
 		<td align="center"> {{list.status_complane}} {% if print_view %} <br>{{list.date_at_work | string | truncate(10, True, '')}} {% endif %}</td>

@@ -1,7 +1,7 @@
 from services.decorators import auth_required
 from flask import Blueprint, request, render_template, redirect, url_for, flash
 from application.implemented import complaint_service
-from application.services.parsing import parsing_from_input
+from application.services.parsing import parsing_from_input, parsing_from_input_bitrix
 from datetime import datetime, timedelta
 from application.services.check_user import check_user
 
@@ -31,7 +31,10 @@ def main():
                 return render_template('complaint/complaint.html', **data)
 
         elif data_received.get('complaint'):
-            data = parsing_from_input(data_received.get('complaint'))
+            if data_received.get('Bitrix24'):
+                data = parsing_from_input_bitrix(data_received.get('complaint'))
+            else:
+                data = parsing_from_input(data_received.get('complaint'))
             flash(complaint_service.create(data))
 
         elif data_received.get('status_complane'):
