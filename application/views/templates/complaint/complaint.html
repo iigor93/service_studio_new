@@ -34,13 +34,32 @@
 <td>
 {% if find_view != 1 %}
 <form method="post">
-	<textarea name = "complaint" style = "width:199px; height :50px;"></textarea>
+	<textarea name="complaint" style = "width:199px; height :50px;"></textarea>
 	<br>
 	<input type="submit" value="Добавить новую рекламацию">
 	<br>
 	<input type="checkbox" id="bitrix_checkbox" checked name="Bitrix24">
 	<label for="bitrix_checkbox">Bitrix24</label>
 </form>
+
+<button onclick="toggle_visibility('hand')">Ручной ввод</button>
+<div class="hand" id="hand" style="display: none;">
+	<form method="post">
+		<label for="hand_compl_num">Номер заявки </label>
+		<input type="text" required id="hand_compl_num" name="hand_compl_num"><br>
+		<label for="desription">Описание</label>
+		<input type="text" required id="desription" name="desription"><br>
+		<label for="address">Адрес</label>
+		<input type="text" required id="address" name="address"><br>
+		<label for="username">ФИО</label>
+		<input type="text" required id="username" name="username"><br>
+		<label for="phone">Телефон</label>
+		<input type="text" required id="phone" name="phone"><br>
+
+		<input type="submit" value="Добавить новую рекламацию">
+	</form>
+</div>
+	<br><br>
 
 	<br><div>Upload scans</div>
 
@@ -155,5 +174,14 @@
 {% else %}
     <p>No complanes are available.</p>
 {% endif %}
+<script type="text/javascript">
+   function toggle_visibility(id) {
+       var e = document.getElementById(id);
+       if(e.style.display == 'block')
+          e.style.display = 'none';
+       else
+          e.style.display = 'block';
+   }
+</script>
 
 {% endblock %}

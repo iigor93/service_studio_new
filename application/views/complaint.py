@@ -1,7 +1,7 @@
 from services.decorators import auth_required
 from flask import Blueprint, request, render_template, redirect, url_for, flash
 from application.implemented import complaint_service
-from application.services.parsing import parsing_from_input, parsing_from_input_bitrix
+from application.services.parsing import parsing_from_input, parsing_from_input_bitrix, hand_input_parsing
 from datetime import datetime, timedelta
 from application.services.check_user import check_user
 
@@ -17,6 +17,7 @@ def main():
         data_received = request.form.to_dict()
 
         if data_received.get('find_smth'):
+            """ Поиск """
             search = data_received.get('find_smth')
             if len(search) > 2:
                 data['complane_list'] = complaint_service.get_all_filter(search)
@@ -31,11 +32,18 @@ def main():
                 return render_template('complaint/complaint.html', **data)
 
         elif data_received.get('complaint'):
+            """ Новая рекламация """
             if data_received.get('Bitrix24'):
                 data = parsing_from_input_bitrix(data_received.get('complaint'))
             else:
                 data = parsing_from_input(data_received.get('complaint'))
             flash(complaint_service.create(data))
+
+        elif data_received.get('hand_compl_num'):
+            """ Ручной ввод рекламации """
+            data = hand_input_parsing(data_received)
+            flash(complaint_service.create(data))
+            pass
 
         elif data_received.get('status_complane'):
             complaint_service.update(data_received)

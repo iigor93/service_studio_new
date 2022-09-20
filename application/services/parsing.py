@@ -1,3 +1,4 @@
+from datetime import date
 from dadata import Dadata
 from config import DADATA_TOKEN, DADATA_SECRET
 
@@ -128,6 +129,45 @@ def parsing_from_input(user_input):
     c_name = user_input[user_input.find('Контактное лицо:') + 17:
                         user_input.find('\r\n', (user_input.find('Контактное лицо:')))]
     new_data['client_name'] = c_name.strip()
+
+    new_data['status_complane'] = 'NEW'
+    new_data['additional_comment'] = '_'
+    new_data['print_order'] = '0'
+    new_data['price_status'] = 0
+    new_data['transport_hours'] = 0
+
+    return new_data
+
+
+def hand_input_parsing(date_):
+    """Takes data from user input textarea"""
+    new_data = {'numer_complane': date_.get('hand_compl_num'),
+                'account_id': 1,
+                'date_creation': str(date.today()),
+                'date_complited_real': str(date.today()),
+                'date_complited_fake': '0',
+                'client_phone_num': date_.get('phone')}
+
+    tp = date_.get('phone')
+
+    if len(tp) == 10:  # without +7 or 8 or 7 at begin
+        new_data['client_phone_num'] = f'+7({tp[0:3]}){tp[3:6]}-{tp[6:10]}'
+    if len(tp) == 11:  # 8 999 123 4567
+        if tp[0] == '8':
+            new_data['client_phone_num'] = f'+7({tp[1:4]}){tp[4:7]}-{tp[7:11]}'
+        else:
+            new_data['client_phone_num'] = f'+{tp[0]}({tp[1:4]}){tp[4:7]}-{tp[7:11]}'
+    if len(tp) == 12:  # +7 999 123 4567
+        new_data['client_phone_num'] = f'{tp[0:2]}({tp[2:5]}){tp[5:8]}-{tp[8:12]}'
+
+    c_address = date_.get('address')
+    c_address = str(input_address(c_address))  # Dadata address correction
+    new_data['address_complane'] = c_address
+
+    new_data['device_type'] = type_by_address(c_address)
+
+    new_data['description_complane'] = date_.get('desription')
+    new_data['client_name'] = date_.get('username')
 
     new_data['status_complane'] = 'NEW'
     new_data['additional_comment'] = '_'
