@@ -30,6 +30,12 @@ def uploads_files():
             filename = secure_filename(file.filename)
             complaint_number_file = filename.split('.')[0]
             complaint = complaint_service.get_all_by_number(complaint_number_file)
+
+            if 'HE' in complaint_number_file and complaint == 'Not found':
+                """ Замена латинского HE на русское НЕ"""
+                complaint_number_file = complaint_number_file.replace('HE', 'НЕ')
+                complaint = complaint_service.get_all_by_number(complaint_number_file)
+
             if complaint == 'Not found':
                 complaints_dont_found.append(f'{filename}')
                 continue
