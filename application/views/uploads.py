@@ -2,6 +2,7 @@ import os
 from datetime import date
 
 from application.services.add_comp_to_account import compl_to_account
+from application.services.pic_to_text import pic_to_text
 from config import UPLOAD_FOLDER
 from services.decorators import auth_required
 from flask import Blueprint, flash, request, redirect, url_for, send_from_directory
@@ -70,3 +71,31 @@ def uploads_files():
 @auth_required
 def download_file(filename, year, month):
     return send_from_directory(f'{UPLOAD_FOLDER}/{year}/{month}', filename)
+
+
+@uploads.route('/upload_img_tmp', methods=['GET', 'POST'], endpoint='upload_img_tmp')
+@auth_required
+def uploads_files_tmp():
+    if request.method == 'POST':
+        data_received = request.form.to_dict()
+
+        uploaded_files = request.files.getlist('file')
+        files_uploaded = []
+
+        for file in uploaded_files:
+            filename = secure_filename(file.filename)
+            folder_name = f'tmp'
+
+            path = os.path.join(UPLOAD_FOLDER, folder_name)
+            if not os.path.exists(path):
+                os.mkdir(path)
+
+            file.save(os.path.join(UPLOAD_FOLDER, folder_name, filename))
+            files_uploaded.append(f'{filename}')
+
+        result = pic_to_text(path)
+        print(result)
+
+        flash(f'Files uploaded ({len(files_uploaded)}): {files_uploaded}')
+        flash(f'Files pytesseract {result}')
+        return redirect(request.referrer)

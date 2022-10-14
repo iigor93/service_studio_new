@@ -1,5 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
+<div>
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for message in messages %}
+				<p>{{ message }}</p>
+    		{% endfor %}
+		{% endif %}
+	{% endwith %}
+</div>
 
 <h3>Список пользователей</h3>
 
@@ -51,6 +60,11 @@
 	</form><br>
 
 </div>
+
+<form action="{{ url_for( 'uploads.upload_img_tmp' ) }}" method=post enctype=multipart/form-data>
+      <input type=file name=file multiple>
+      <input type=submit value=Upload>
+</form>
 
 {% else %}
     <p>No complanes are available.</p>

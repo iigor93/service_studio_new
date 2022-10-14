@@ -35,3 +35,6 @@ SQLAlchemy==1.4.35
 Werkzeug==2.1.1
 wrapt==1.14.0
 zipp==3.8.0
+
+pytesseract~=0.3.10
+Pillow~=9.2.0
