@@ -2,6 +2,8 @@ FROM python:3.8.10
 
 WORKDIR /code
 COPY requirements.txt .
+RUN apt-get update \
+  && apt-get -y install tesseract-ocr
 RUN pip install -r requirements.txt
 COPY application application
 COPY DAO DAO
