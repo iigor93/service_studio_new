@@ -26,6 +26,8 @@ def pic_to_text(path):
 
             if start == -1 and finish == -1:
                 print('Text not found')
+                file_names_list.append((f'{file}', f'crop_{file}'))
+                image.save(f'{path}/crop_{file}')
             else:
                 complaint_number = string[start + 2: finish].strip()
 
@@ -34,7 +36,8 @@ def pic_to_text(path):
                     # print('string: ', string)
                     complaint_number = complaint_number + '_' + str(random.randint(0, 20))
 
-                file_names_list.append(complaint_number)
+                file_names_list.append((f'{complaint_number}.{ext}', f'{complaint_number}_crop.{ext}'))
 
                 os.rename(f'{path}/{file}', f'{path}/{complaint_number}.{ext}')
+                image.save(f'{path}/{complaint_number}_crop.{ext}')
     return file_names_list
