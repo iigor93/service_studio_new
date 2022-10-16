@@ -101,7 +101,7 @@
 		<tr>
 		<th>№</th>
 		{% if print_view %}
-			<th>Порядок/id</th>
+			<th>id</th>
 		{% endif %}
 		
 		<th>Номер</br> заявки</th>
@@ -147,7 +147,7 @@
 				<br>{{list.date_creation}}</td>
 			<td width="200">{{list.description_complane}}</td>
 			<td width="250">{{list.address_complane}}</td>
-			<td onclick="sendValue(this);">{{list.client_name}}</td>
+			<td>{{list.client_name}}</td>
 			<td width="130" align="center"> <a href="{{ url_for( 'detail_compl.detail_compl', c_id=list.id ) }}"> {{list.client_phone_num}}</a></td>
 			<td>{{list.device_type}}</td>
 
@@ -200,7 +200,7 @@ $('.sortable-table tbody').sortable({
           	str_item += $(this).children('td')[1].innerHTML + ';';
         });
         //console.log(str_item);
-        $.get( '/api', { str_item } );
+        $.get( '/api/', { str_item } );
     },
 });
 
