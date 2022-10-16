@@ -13,6 +13,7 @@ from application.views.prints import prints
 from application.views.telegram import tg
 from application.views.manage_users import manage_users
 from application.views.uploads import uploads
+from application.views.api import api
 
 
 def create_app(config_obj):
@@ -33,6 +34,7 @@ def register_blueprints(flask_app):
     flask_app.register_blueprint(manage_users, url_prefix='/manage_users')
     flask_app.register_blueprint(uploads, url_prefix='/uploads')
     flask_app.register_blueprint(tg, url_prefix='/AAHKbwD_BtK91grjBlmhmIEjPfGHyBxbyxE/')
+    flask_app.register_blueprint(api, url_prefix='/api')
 
 
 def register_extensions(flask_app):

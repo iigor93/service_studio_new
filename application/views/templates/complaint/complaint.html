@@ -96,11 +96,12 @@
 
 {% if complane_list %}
 
-    <table border="1" width = 100% style="font-size:10pt;">
-	<tr>
+    <table {% if print_view %} class="sortable-table" {% endif%} border="1" width = 100% style="font-size:10pt;">
+	<thead>
+		<tr>
 		<th>№</th>
 		{% if print_view %}
-			<th>Порядок</th>
+			<th>Порядок/id</th>
 		{% endif %}
 		
 		<th>Номер</br> заявки</th>
@@ -112,12 +113,14 @@
 		<th>Тип</th>
 		<th>Статус</th>
 		<th width = 15%>Комментарий</th>
-   </tr> 
+   </tr>
+		</thead>
+		<tbody>
    
    
     {% for list in complane_list %}
     
-        <tr
+        <tr  {% if print_view %} class="handle" {% endif %}
 				{% if list.device_type == '187F0002' %}
 					bgcolor="#98FB98" style="color:black; "
 				{% elif list.device_type == '187F000100' %}
@@ -136,14 +139,7 @@
 			<td>{{loop.index}}</td>
 
 			{% if print_view %}
-			<td align="center">
-			<form method="post" name="change_order" >
-
-					 <input type="number" name = "print_order" value={{list.print_order}} style="width: 3em;">
-					 <input type="hidden" name = "id" value = {{list.id}}>
-					 <input type="submit" value="OK">
-			</form>
-			</td>
+			<td align="center">{{list.id}}</td>
 			{% endif %}
 			
 			<td align="center"><a href="{{ url_for( 'detail_compl.detail_compl', c_id=list.id ) }}" class="d_view" style="font-size:14pt;">{{ list.numer_complane }}{% if list.date_complited_fake == "1"  %}*{% endif %}
@@ -151,14 +147,15 @@
 				<br>{{list.date_creation}}</td>
 			<td width="200">{{list.description_complane}}</td>
 			<td width="250">{{list.address_complane}}</td>
-			<td>{{list.client_name}}</td>
+			<td onclick="sendValue(this);">{{list.client_name}}</td>
 			<td width="130" align="center"> <a href="{{ url_for( 'detail_compl.detail_compl', c_id=list.id ) }}"> {{list.client_phone_num}}</a></td>
 			<td>{{list.device_type}}</td>
 
 		<td align="center"> {{list.status_complane}} {% if print_view %} <br>{{list.date_at_work | string | truncate(10, True, '')}} {% endif %}</td>
 <td>{{list.additional_comment}}<br></td>
 </tr>
-{% endfor %} 
+{% endfor %}
+		</tbody>
 </table><br>
 
 <br>
@@ -182,6 +179,59 @@
        else
           e.style.display = 'block';
    }
+
+
+var fixHelper = function(e, ui) {
+	ui.children().each(function() {
+		$(this).width($(this).width());
+	});
+	return ui;
+};
+
+
+$('.sortable-table tbody').sortable({
+	helper: fixHelper,
+	update: function(event, ui) {
+        let items = [];
+        var str_item = '';
+	    $(ui.item[0].parentNode).children('tr').each(function(){
+	    	//console.log($(this));
+          	//items.push($(this).children('td')[1].innerHTML);
+          	str_item += $(this).children('td')[1].innerHTML + ';';
+        });
+        //console.log(str_item);
+        $.get( '/api', { str_item } );
+    },
+});
+
+function sendValue(el = null){
+    let body = null;
+
+    if (el) {
+        let col = el.parentNode;
+        let item = col.parentNode
+        let id = item.id ? item.id + '.' + col.id : el.id;
+        body = 'id=' + id + '&value=' + encodeURIComponent(el.value);
+    }
+
+    return new Promise(function(succeed, fail) {
+        let req = new XMLHttpRequest();
+        let url = "{{ url_for('api.api') }}";
+        req.open("POST", url, true);
+        req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        req.addEventListener("load", function() {
+        if (req.status < 400) {
+        	console.log(req.responseText);
+        }
+        else
+        	console.log('err');
+    });
+
+    req.send(body);
+    });
+}
+
+
 </script>
 
 {% endblock %}
