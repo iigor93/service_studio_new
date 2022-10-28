@@ -44,30 +44,32 @@
     <td rowspan="2" align="center">{{complain.client_name}}<br>
     <br>
     {{complain.client_phone_num}}</td>
-    <td>{{complain.address_complane}}</td>
-    <td width="300">{{complain.additional_comment}}<br>
+    <td id="address_const">{{complain.address_complane}}</td>
+    <td id="comment_const" width="300">{{complain.additional_comment}}<br>
     <br></td>
     <td align="center">{{complain.device_type}}</td>
   </tr>
   <tr>
+
     <td align="center">
-      <form method="post">
+      
         <div>
-          <textarea name="address" cols="40" rows="4">{{complain.address_complane}}</textarea>
+          <textarea class="api" id="address__{{complain.id}}" name="address" cols="40" rows="4">{{complain.address_complane}}</textarea>
         </div>
         <div>
-          <textarea name="add_address" placeholder="добавить подъезд и этаж" cols="30" rows="4"></textarea>
-		  <input type="hidden" value="{{complain.id}}" name="id">
-        </div><input type="submit" value="Добавить">
-      </form>
+          <textarea class="api" id="add_address__{{complain.id}}"  name="add_address" placeholder="добавить подъезд и этаж" cols="30" rows="4"></textarea>
+		      <input type="hidden" value="{{complain.id}}" name="id">
+        </div>
+      
     </td>
+
     <td align="center">
-      <form method="post">
+     
         <div>
-          	<textarea name="additional_comment" cols="40" rows="4">{{complain.additional_comment}}</textarea>
-			<input type="hidden" value="{{complain.id}}" name="id">
-        </div><input type="submit" value="Добавить">
-      </form>
+          	<textarea class="api" id="additional_comment__{{complain.id}}"  name="additional_comment" cols="40" rows="4">{{complain.additional_comment}}</textarea>
+			      <input type="hidden" value="{{complain.id}}" name="id">
+        </div>
+     
     </td>
 
     <td align="center">
@@ -222,5 +224,82 @@
 <p>No complanes are available.</p>
 
 {% endif %}
+
+<script type="text/javascript">
+$( ".api" ).bind('blur keyup', function(e) {
+  if (e.type === 'blur') {
+    var current_input = e.currentTarget;
+    
+    sendValue(current_input);
+  }
+
+});
+
+
+function sendValue(el = null){
+    let body = null;
+    
+    if (el) {
+
+        var id_ = $(el).attr("id");
+        var text = $(el).val();
+        body = 'id=' + id_ + '&value=' + text;
+    }
+
+    return new Promise(function(succeed, fail) {
+        let req = new XMLHttpRequest();
+        let url = "{{ url_for('api.api') }}";
+        req.open("POST", url, true);
+        req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        
+        req.addEventListener("load", function() {
+        if (req.status < 400) {
+            succeed(updatePage(req.responseText));
+        }
+        else{
+            console.log('err');
+            fail(new Error("Ошибка на сервере: " + req.statusText));
+        }
+        });
+    req.addEventListener("error", function() {
+        fail(new Error("Ошибка. Сервер недоступен!"));
+    });
+    req.send(body);
+    });
+}
+
+
+function updatePage(json){
+    //console.log(json);
+    if (json) {
+        let data = JSON.parse(json);
+        const additional_comment = data.additional_comment;
+        const address = data.address;
+
+        //console.log(data);
+
+        if (additional_comment){
+          cell = $("#comment_const");
+          $(cell).animate({"background-color": "#90EE90"}, 100);
+          $(cell).animate({"background-color": "#90EE90"}, 100);
+          $(cell).animate({"background-color": ""}, 900);
+          $(cell).html(additional_comment);
+    
+        }
+
+        if (address){
+          cell = $("#address_const");
+          $(cell).animate({"background-color": "#90EE90"}, 100);
+          $(cell).animate({"background-color": "#90EE90"}, 100);
+          $(cell).animate({"background-color": ""}, 900);
+          $(cell).html(address);
+    
+        }
+
+    }
+};
+    
+  
+</script>
 
 {% endblock %}
