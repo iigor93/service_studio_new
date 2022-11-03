@@ -112,7 +112,17 @@ def parsing_from_input(user_input):
                       user_input.find('Телефон') + 9:
                       user_input.find('\r\n', (user_input.find('Телефон')))
                       ]
-    new_data['client_phone_num'] = complaint_phone
+    tp = complaint_phone
+    new_data['client_phone_num'] = tp
+    if len(tp) == 10:  # without +7 or 8 or 7 at begin
+        new_data['client_phone_num'] = f'+7({tp[0:3]}){tp[3:6]}-{tp[6:10]}'
+    if len(tp) == 11:  # 8 999 123 4567
+        if tp[0] == '8':
+            new_data['client_phone_num'] = f'+7({tp[1:4]}){tp[4:7]}-{tp[7:11]}'
+        else:
+            new_data['client_phone_num'] = f'{tp[0]}({tp[1:4]}){tp[4:7]}-{tp[7:11]}'
+    if len(tp) == 12:  # +7 999 123 4567
+        new_data['client_phone_num'] = f'{tp[0:2]}({tp[2:5]}){tp[5:8]}-{tp[8:12]}'
 
     c_address = user_input[user_input.find('Адрес:') + 9: user_input.find('\r\n', (user_input.find('Адрес:')))]
     c_address = str(input_address(c_address))  # Dadata address correction
