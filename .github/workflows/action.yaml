@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: clone code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: docker build
         run: docker build -t iigor93/service_studio_new:$GITHUB_REF_NAME-$GITHUB_RUN_ID .
       - name: docker login
@@ -22,7 +22,7 @@ jobs:
       
     steps:
       - name: clone code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: render configs
         run: |
           mkdir skypro_flask
