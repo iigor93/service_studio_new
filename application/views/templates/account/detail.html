@@ -77,7 +77,7 @@
 	<th>Выезд, ч</th>
 	<th>АВР</th>
 	<th>Наличие<br>файлов<br>пользователя</th>
-	{% for item in account.complaint|sort(attribute='transport_hours, name', reverse=true) %}
+	{% for item in account.complaint|sort(attribute='numer_complane', reverse=false) %}
 	<tr>
 		<td><a href="{{ url_for( 'detail_compl.detail_compl', c_id=item.id ) }}" >{{ item.numer_complane }} </a></td>
 		<td align="center">{{ item.price_status }}</td>
