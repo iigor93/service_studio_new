@@ -128,6 +128,7 @@ def uploads_files_tesseract():
         data_received = request.form.to_dict()
         print(data_received)
         uploaded_files = []
+        transport_hours = []
 
         folder_name = f'tmp'
         path_source = os.path.join(UPLOAD_FOLDER, folder_name)
@@ -147,6 +148,9 @@ def uploads_files_tesseract():
         for file_name_ext, file_name_new in data_received.items():
             filename_old = file_name_ext
             if file_name_ext == 'id':
+                continue
+            if file_name_ext.startswith('transport_hours'):
+                transport_hours.append(file_name_ext.split('.')[1])
                 continue
             if file_name_ext.split('.')[0] == file_name_new:
                 filename_new = file_name_ext
@@ -174,6 +178,8 @@ def uploads_files_tesseract():
 
             new_date = {'filename': f'{folder_year}/{folder_month}/{filename}',
                         'id': complaint.id}
+            if complaint_number_file in transport_hours:
+                new_date['transport_hours'] = 3
             complaint_service.update(new_date)
             files_uploaded.append(f'{filename}')
             complaints_without_ext.append(complaint_number_file)
