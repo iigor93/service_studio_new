@@ -1,33 +1,33 @@
 version: "3.9"
 services:
-
-  flask-api:
-
-    image: iigor93/service_studio_new:$GITHUB_REF_NAME-$GITHUB_RUN_ID
-    ports:
-      - "5000:5000"
-    depends_on:
-      postgres_db:
-        condition: service_healthy
-      flask-api-migrate:
-          condition: service_completed_successfully
-    volumes:
-      - ./config.py:/code/config.py
-      - ./uploads:/code/uploads
-
-  flask-api-migrate:
-
-    image: iigor93/service_studio_new:$GITHUB_REF_NAME-$GITHUB_RUN_ID
+#
+#  flask-api:
+#
+#    image: iigor93/service_studio_new:$GITHUB_REF_NAME-$GITHUB_RUN_ID
 #    ports:
 #      - "5000:5000"
-    depends_on:
-      postgres_db:
-        condition: service_healthy
-    volumes:
-      - ./config.py:/code/config.py
-      - ./uploads:/code/uploads
-    command: flask db upgrade
-
+#    depends_on:
+#      postgres_db:
+#        condition: service_healthy
+#      flask-api-migrate:
+#          condition: service_completed_successfully
+#    volumes:
+#      - ./config.py:/code/config.py
+#      - ./uploads:/code/uploads
+#
+#  flask-api-migrate:
+#
+#    image: iigor93/service_studio_new:$GITHUB_REF_NAME-$GITHUB_RUN_ID
+##    ports:
+##      - "5000:5000"
+#    depends_on:
+#      postgres_db:
+#        condition: service_healthy
+#    volumes:
+#      - ./config.py:/code/config.py
+#      - ./uploads:/code/uploads
+#    command: flask db upgrade
+#
 
      
   postgres_db:
