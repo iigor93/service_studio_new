@@ -18,6 +18,7 @@ postgres-data/
 .git/
 .idea/
 docker-compose.yaml
+docker-compose-server.yaml
 sessions.db
 
 postgres-data
