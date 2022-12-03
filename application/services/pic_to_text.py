@@ -17,7 +17,7 @@ def pic_to_text(path):
             area = (w*0.05, 0, w*0.5, h*0.2)
             image = image.crop(area)
             # image.show()
-
+            pytesseract.pytesseract.tesseract_cmd = r"/usr/bin/tesseract"
             string = pytesseract.image_to_string(image)
 
             string = string.replace(" ", "")
