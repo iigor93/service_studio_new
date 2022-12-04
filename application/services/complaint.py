@@ -1,3 +1,5 @@
+from markupsafe import Markup
+
 from application.DAO.complaint import ComplaintDAO
 
 
@@ -32,7 +34,12 @@ class ComplaintService:
                 if item.numer_complane == account_d.get('numer_complane'):
                     return f'Рекламация с таким номером ({account_d.get("numer_complane")}) уже существует'
         self.dao.create(account_d)
-        return f'Рекламация {account_d.get("numer_complane")} создана'
+        msg = f'Рекламация {account_d.get("numer_complane")} создана<br>'
+        msg += f'Address: {account_d.get("address_complane")}<br>'
+        msg += f'Name: {account_d.get("client_name")}<br>'
+        msg += f'Phone: {account_d.get("client_phone_num")}<br>'
+        msg += f'Description: {account_d.get("description_complane")}<br>'
+        return Markup(msg)
 
     def all_dates_at_work(self):
         all_dates = []
