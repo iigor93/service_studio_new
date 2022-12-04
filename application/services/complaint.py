@@ -35,6 +35,7 @@ class ComplaintService:
                     return f'Рекламация с таким номером ({account_d.get("numer_complane")}) уже существует'
         self.dao.create(account_d)
         msg = f'Рекламация {account_d.get("numer_complane")} создана<br>'
+        msg += f'Type: {account_d.get("device_type")}<br>'
         msg += f'Address: {account_d.get("address_complane")}<br>'
         msg += f'Name: {account_d.get("client_name")}<br>'
         msg += f'Phone: {account_d.get("client_phone_num")}<br>'
