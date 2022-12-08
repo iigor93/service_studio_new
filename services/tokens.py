@@ -40,7 +40,8 @@ def check_tokens():
                 else:
                     all_user_tokens = session_service.get_all_by_uid(user_refresh.get('user_id'))
                     for item in all_user_tokens:
-                        session_service.delete(item.id)
+                        pass
+                        # session_service.delete(item.id)
                     return False
 
             except jwt.exceptions.ExpiredSignatureError as e:
