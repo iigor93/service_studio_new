@@ -6,6 +6,7 @@
 <form action="{{ url_for('prints.account_print') }}" method="post" target="_blank">
 	<input type="hidden" name = "id" value = {{account.id}}>
 	<input type="submit" value="Печать счета">
+	<input type="checkbox" name="stamp" value="with stamp"> С печатью
 </form>
 
 <br>

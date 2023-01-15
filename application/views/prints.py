@@ -61,6 +61,8 @@ def account_print():
     if request.method == 'POST':
         data_received = request.form.to_dict()
         data = account_calculation(data_received.get('id'))
+        if data_received.get("stamp"):
+            data["stamp"] = True
 
         return render_template('account/account_print.html', **data)
     return redirect(url_for('account.all_accounts'))
