@@ -63,6 +63,5 @@ def account_print():
         data = account_calculation(data_received.get('id'))
         if data_received.get("stamp"):
             data["stamp"] = True
-
         return render_template('account/account_print.html', **data)
     return redirect(url_for('account.all_accounts'))
