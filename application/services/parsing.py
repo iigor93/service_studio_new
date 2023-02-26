@@ -138,7 +138,10 @@ def parsing_from_input(user_input):
 
     c_name = user_input[user_input.find('Контактное лицо:') + 17:
                         user_input.find('\r\n', (user_input.find('Контактное лицо:')))]
-    new_data['client_name'] = c_name.strip()
+    client_name = c_name.strip()
+    if client_name:
+        client_name = client_name.title()
+    new_data['client_name'] = client_name
 
     new_data['status_complane'] = 'NEW'
     new_data['additional_comment'] = '_'
