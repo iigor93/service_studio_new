@@ -172,3 +172,4 @@ fabric.properties
 /postgres_tmp/
 /uploads/
 /backup/
+/application/views/static/complaint/images/stamp.png
