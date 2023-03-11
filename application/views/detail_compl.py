@@ -6,7 +6,7 @@ from application.services.parsing import input_address
 from datetime import datetime
 from application.app_config import PRICE_DEFAULT, TRANSPORT_HOURS_DEFAULT
 from application.services.check_user import check_user
-
+from dateutil.relativedelta import relativedelta
 
 detail_compl = Blueprint('detail_compl', __name__, template_folder='templates', static_folder='static')
 
@@ -37,7 +37,14 @@ def detail_view(c_id):
         elif data_received.get('status_complane'):
             data_received['account_id'] = 1
             format_ = "%Y-%m-%d"
-            dt_object = datetime.strptime('1999-01-01', format_)
+            current_day = datetime.now()
+
+            for i in range(1, 8):
+                next_saturday = current_day + relativedelta(days=i)
+                if next_saturday.weekday() == 5:
+                    break
+
+            dt_object = datetime.strftime(next_saturday, format_)
             data_received['date_at_work'] = dt_object
             complaint_service.update(data_received)
 
