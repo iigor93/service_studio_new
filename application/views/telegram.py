@@ -44,7 +44,7 @@ def telegram():
                 else:
                     text_response = 'Кол-во: ' + str(len(compl_list)) + ' (' + str(datetime.now().date()) + ')' + '\r\n'
                     for lst in compl_list:
-                        text_response += str(lst.numer_complane) + '_' + str(lst.client_phone_num) + '_' + str(lst.status_complane) + \
+                        text_response += str(lst.numer_complane) + f'({str(lst.date_creation)})' + '_' + str(lst.client_phone_num) + '_' + str(lst.status_complane) + \
                                          '\r\n' + str(lst.address_complane) + \
                                          '\r\n' + str(lst.additional_comment) + '\r\n \r\n'
 
