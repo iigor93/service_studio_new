@@ -1,5 +1,7 @@
 import os
 import random
+import re
+
 import pytesseract
 from PIL import Image
 
@@ -30,6 +32,8 @@ def pic_to_text(path):
                 image.save(f'{path}/crop_{file}')
             else:
                 complaint_number = string[start + 2: finish].strip()
+                regex = re.compile('[a-zA-Z]|[а-яА-Я]')
+                complaint_number = regex.sub('', complaint_number)
 
                 while complaint_number in file_names_list:
                     # print(file_names_list)
