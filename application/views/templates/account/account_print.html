@@ -2807,7 +2807,13 @@ xmlns="http://www.w3.org/TR/REC-html40">
  </tr>
  <tr height=21 style='height:15.75pt'>
   <td height=21 class=xl8816761 colspan=5 style='height:15.75pt'>ИСПОЛНИТЕЛЬ</td>
-  <td class=xl6816761></td>
+  <td rowspan="5" colspan="5" class=xl6816761>
+   {% if stamp %}
+
+   <img src="{{ url_for('complaint.static', filename='complaint/images/stamp.png/') }}" width="346" height="200" alt="accounts">
+    {% endif %}
+
+  </td>
   <td class=xl6816761></td>
   <td class=xl6816761></td>
   <td class=xl6816761></td>
