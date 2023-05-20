@@ -19,8 +19,11 @@ class ComplaintDAO:
         return item
 
     def get_all_filter(self, search_data):
+        search_data = search_data.strip()
         return self.session.query(Complaint).filter(or_(Complaint.numer_complane.like(f'%{search_data}%'),
-                                                        Complaint.client_phone_num.like(f'%{search_data}%'))).all()
+                                                        Complaint.client_phone_num.like(f'%{search_data}%'),
+                                                        Complaint.address_complane.like(f'%{search_data}%'),
+                                                        )).all()
 
     def get_all(self):
         return self.session.query(Complaint).filter(Complaint.status_complane != 'done').\
