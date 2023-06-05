@@ -9,6 +9,11 @@
 	<input type="checkbox" name="stamp" value="with stamp"> С печатью
 </form>
 
+<form action="{{ url_for('account.account_download_pic', aid=account.id) }}" method="get" target="_blank">
+	<input type="hidden" name = "id" value = {{account.id}}>
+	<input type="submit" value="Скачать фото">
+</form>
+
 <br>
 <table border="1">
  <tr>

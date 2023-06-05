@@ -1,5 +1,9 @@
+import os
+import zipfile
+
+import config
 from services.decorators import user_required
-from flask import Blueprint, request, render_template, flash
+from flask import Blueprint, request, render_template, flash, send_file
 from application.implemented import account_service
 from datetime import datetime
 from application.services.add_comp_to_account import compl_to_account
@@ -64,3 +68,23 @@ def account_details(aid):
         data['user_name'] = 'no_user'
         data['admin'] = 'no_admin'
     return render_template('account/detail.html', **data)
+
+
+@account.route('/<int:aid>/download/', methods=['GET'], endpoint='account_download_pic')
+@user_required
+def account_details(aid):
+    account_ = account_service.get_one(aid)
+
+    files_to_zip = [os.path.join(config.UPLOAD_FOLDER, complaint.filename)
+                    for complaint in account_.complaint if complaint.filename]
+
+    temp_dir = os.path.join(config.UPLOAD_FOLDER, "temp")
+    os.makedirs(temp_dir, exist_ok=True)
+
+    zip_filename = os.path.join(temp_dir, f'счет №{account_.account_number}.zip')
+    with zipfile.ZipFile(zip_filename, 'w', zipfile.ZIP_DEFLATED) as zip_file:
+        for path in files_to_zip:
+            file_name = os.path.basename(path)
+            zip_file.write(path, file_name)
+
+    return send_file(zip_filename, as_attachment=True)
