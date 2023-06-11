@@ -43,7 +43,7 @@
 	  </td>
   </tr>
 </table><br><br>
-{% if account.account_number != "1" %}
+{% if account.account_number != "0" %}
 <div>Загрузка списка рекламаций:<br>
 <form method="post">
 	<div><textarea name = "compl_list"></textarea></div>
@@ -98,11 +98,13 @@
 <table border="1">
 	<th>Номер</th>
 	<th>Адрес</th>
+	<th>Дата</th>
 
 	{% for item in account.complaint %}
 	<tr>
 		<td> {{ item.numer_complane }} </td>
 		<td> {{ item.address_complane }} </td>
+		<td> {{ item.date_creation }} </td>
 
 	</tr>
 	{% endfor %}
