@@ -102,7 +102,7 @@
 
 	{% for item in account.complaint %}
 	<tr>
-		<td> {{ item.numer_complane }} </td>
+		<td> <a href="{{ url_for( 'detail_compl.detail_compl', c_id=item.id ) }}" >{{ item.numer_complane }} </a></td>
 		<td> {{ item.address_complane }} </td>
 		<td> {{ item.date_creation }} </td>
 
