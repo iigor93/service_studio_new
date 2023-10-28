@@ -84,6 +84,6 @@ def account_calculation(aid):
     context['rub_transport_order'] = rub_transport_order
     context['rub_counter'] = rub_counter
     context['account'] = account
-    context['agreement'] = AGREEMENT_NUM.get('2022')
+    context['agreement'] = AGREEMENT_NUM.get('2023')
 
     return context
